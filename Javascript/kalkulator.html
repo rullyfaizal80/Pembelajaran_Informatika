@@ -3,41 +3,91 @@
 <head>
   <title>Kalkulator Sederhana</title>
   <style>
+    /* 1. Reset sederhana agar ukuran elemen konsisten */
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-  font-family: Arial;
-  background: #f2f2f2;
-}
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      /* Membuat kalkulator ada di tengah layar */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
 
-.calculator {
-  width: 300px;
-  margin: 50px auto;
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px gray;
-}
+    .calculator {
+      width: 300px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
 
-input {
-  width: 100%;
-  height: 40px;
-  margin-bottom: 10px;
-  text-align: right;
-  font-size: 18px;
-}
+    h2, h4 {
+      text-align: center;
+      margin-top: 5px;
+      margin-bottom: 0px;
+    }
 
-.tombol button {
-  width: 50px;
-  height: 40px;
-  margin: 5px;
-  font-size: 16px;
-}
+    p {
+      text-align: center;
+      margin-top: 5px;
+      margin-bottom: 15px;
+    }
 
+    /* Input Layar */
+    input {
+      width: 100%;
+      height: 50px;
+      margin-bottom: 15px;
+      text-align: right;
+      font-size: 24px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
 
+    /* Container Tombol dengan GRID (Materi Bagus untuk Siswa) */
+    .tombol {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 4 Kolom sama besar */
+      gap: 10px; /* Jarak antar tombol */
+    }
+
+    /* Style Tombol */
+    button {
+      width: 100%; /* Lebar mengikuti kolom grid */
+      height: 50px;
+      font-size: 18px;
+      border: none;
+      background-color: #eee;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ddd;
+    }
+
+    /* Opsional: Menyembunyikan tombol kosong agar tampilan bersih */
+    /* Siswa bisa diajarkan pseudo-class :empty ini */
+    button:empty {
+      visibility: hidden; 
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
+
   <div class="calculator">
     <h2>Kalkulator</h2>
+    <h4>MIMHa Tsanawiyah Informatika</h4>
+    <p>Developed by Rully Faizal</p>
     <input type="text" id="layar" disabled>
 
     <div class="tombol">
@@ -56,27 +106,32 @@ input {
       <button onclick="tambahAngka('3')">3</button>
       <button onclick="hitung()">=</button>
 
-      <button></button>
+      <button></button> 
       <button onclick="tambahAngka('0')">0</button>
-      <button></button>
+      <button></button> 
       <button onclick="hapus()">C</button>
     </div>
   </div>
 
   <script>
     function tambahAngka(angka) {
-  document.getElementById("layar").value += angka;
-}
+      document.getElementById("layar").value += angka;
+    }
 
-function hitung() {
-  let hasil = document.getElementById("layar").value;
-  document.getElementById("layar").value = eval(hasil);
-}
+    function hitung() {
+      let hasil = document.getElementById("layar").value;
+      // Menambahkan error handling sederhana agar tidak crash jika rumus salah
+      try {
+        document.getElementById("layar").value = eval(hasil);
+      } catch (e) {
+        alert("Format salah!");
+      }
+    }
 
-function hapus() {
-  document.getElementById("layar").value = "";
-}
-       
+    function hapus() {
+      document.getElementById("layar").value = "";
+    }
   </script>
+
 </body>
 </html>
