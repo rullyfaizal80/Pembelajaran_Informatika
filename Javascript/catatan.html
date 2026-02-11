@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Catatan Harian</title>
+  <style>
+    /* 1. Reset & Center Layout */
+    body {
+      font-family: Arial, sans-serif;
+      background: #e0f7fa;
+      display: flex; /* Agar kotak ada di tengah layar */
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    /* 2. Desain Kotak Utama */
+    .box {
+      width: 350px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Bayangan halus */
+    }
+
+    h2 {
+      text-align: center;
+      color: #006064;
+      margin-top: 0;
+    }
+
+    /* 3. Wrapper untuk Input & Tombol agar sejajar */
+    .input-group {
+      display: flex;
+      gap: 10px; /* Jarak antara input dan tombol */
+      margin-bottom: 20px;
+    }
+
+    input {
+      flex: 1; /* Input otomatis mengisi sisa ruang */
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #00bcd4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #0097a7;
+    }
+
+    /* 4. Styling Daftar (List) */
+    ul {
+      list-style-type: none; /* Hilangkan titik bullet */
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      background-color: #f9f9f9;
+      border-bottom: 1px solid #eee; /* Garis tipis antar item */
+      padding: 10px;
+      color: #333;
+    }
+    
+    /* Opsional: Efek belang-belang ganjil/genap agar mudah dibaca */
+    li:nth-child(even) {
+      background-color: #f1f1f1;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>Catatan Saya</h2>
+    
+    <div class="input-group">
+      <input type="text" id="catatan" placeholder="Isi kegiatan...">
+      <button onclick="tambahCatatan()">Tambah</button>
+    </div>
+
+    <ul id="daftar">
+      </ul>
+  </div>
+
+  <script>
+    // Kode Javascript SAMA PERSIS dengan yang Bapak/Ibu berikan
+    // Tidak ada penambahan logika baru
+    
+    let catatan = [];
+
+    function tambahCatatan() {
+      let input = document.getElementById("catatan").value;
+      catatan.push(input);
+      tampilkan();
+    }
+
+    function tampilkan() {
+      let list = "";
+      for (let i = 0; i < catatan.length; i++) {
+        list += "<li>" + catatan[i] + "</li>";
+      }
+      document.getElementById("daftar").innerHTML = list;
+    }
+  </script>
+
+</body>
+</html>

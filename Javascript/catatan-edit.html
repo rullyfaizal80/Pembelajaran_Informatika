@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Catatan Harian + Storage</title>
+  <style>
+    /* --- CSS Tampilan (Sama seperti sebelumnya + tambahan untuk tombol hapus) --- */
+    body {
+      font-family: Arial, sans-serif;
+      background: #e0f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .box {
+      width: 350px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #006064;
+      margin-top: 0;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    /* Tombol Tambah (Biru) */
+    .btn-add {
+      padding: 10px 20px;
+      background-color: #00bcd4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-add:hover { background-color: #0097a7; }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* Update: Menggunakan Flexbox di LI agar teks dan tombol hapus berseberangan */
+    li {
+      background-color: #f9f9f9;
+      border-bottom: 1px solid #eee;
+      padding: 10px;
+      color: #333;
+      display: flex; /* Agar teks di kiri, tombol di kanan */
+      justify-content: space-between; 
+      align-items: center;
+    }
+
+    /* Tombol Hapus (Merah Kecil) */
+    .btn-hapus {
+      background-color: #ff5252;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 12px;
+      margin-left: 10px;
+    }
+
+    .btn-hapus:hover { background-color: #d32f2f; }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>Catatan Saya</h2>
+    
+    <div class="input-group">
+      <input type="text" id="catatan" placeholder="Isi kegiatan...">
+      <button class="btn-add" onclick="tambah()">Tambah</button>
+    </div>
+
+    <ul id="daftar">
+      </ul>
+  </div>
+
+  <script>
+    // 1. Ambil data dari "Gudang Browser" (Local Storage) saat pertama kali dibuka
+    // Jika gudang kosong, pakai array kosong []
+    let dataSimpanan = localStorage.getItem("catatan_harian");
+    let catatan = JSON.parse(dataSimpanan) || [];
+
+    // Tampilkan data yang sudah ada saat halaman dimuat
+    tampilkan();
+
+    function tambah() {
+      let input = document.getElementById("catatan");
+      
+      // Validasi sederhana: jangan simpan jika kosong
+      if(input.value === "") return alert("Tulis dulu!");
+
+      catatan.push(input.value);
+      
+      simpanKeBrowser(); // Simpan perubahan
+      tampilkan();       // Update layar
+      
+      input.value = "";  // Kosongkan kotak input
+    }
+
+    function hapus(index) {
+      // Menghapus 1 item berdasarkan nomor urut (index)
+      catatan.splice(index, 1);
+      
+      simpanKeBrowser(); // Simpan perubahan
+      tampilkan();       // Update layar
+    }
+
+    // Fungsi Pembantu: Menyimpan Array ke Local Storage
+    function simpanKeBrowser() {
+      // Array harus diubah jadi Teks (JSON) agar bisa masuk storage
+      let dataTeks = JSON.stringify(catatan);
+      localStorage.setItem("catatan_harian", dataTeks);
+    }
+
+    function tampilkan() {
+      let list = "";
+      for (let i = 0; i < catatan.length; i++) {
+        // Kita tambahkan tombol Hapus dengan mengirim nomor index (i)
+        list += `
+          <li>
+            <span>${catatan[i]}</span>
+            <button class="btn-hapus" onclick="hapus(${i})">Hapus</button>
+          </li>
+        `;
+      }
+      document.getElementById("daftar").innerHTML = list;
+    }
+  </script>
+
+</body>
+</html>
