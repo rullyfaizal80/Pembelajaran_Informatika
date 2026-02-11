@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kalkulator Rapi</title>
+  <style>
+    /* Mengatur halaman agar kalkulator ada di tengah */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #e0e5ec;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .calculator {
+      width: 320px;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 15px 15px 30px #bebebe, 
+                 -15px -15px 30px #ffffff; /* Efek Neumorphism halus */
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-top: 0;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* Tampilan Layar */
+    input {
+      width: 100%;
+      height: 60px;
+      margin-bottom: 20px;
+      text-align: right;
+      font-size: 32px;
+      border: none;
+      background: #f4f4f4;
+      border-radius: 10px;
+      padding-right: 15px;
+      box-sizing: border-box; /* Agar padding tidak merusak lebar */
+      color: #333;
+      font-weight: bold;
+    }
+
+    /* Container Tombol menggunakan Grid */
+    .tombol {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 4 Kolom sama besar */
+      gap: 10px; /* Jarak antar tombol */
+    }
+
+    /* Style Dasar Tombol */
+    button {
+      height: 60px;
+      font-size: 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #f0f0f0;
+      color: #333;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+
+    button:hover {
+      background: #e0e0e0;
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: inset 2px 2px 5px rgba(0,0,0,0.1);
+    }
+
+    /* Warna Khusus Operator */
+    .operator {
+      background-color: #ff9f43;
+      color: white;
+    }
+    .operator:hover {
+      background-color: #e58e3c;
+    }
+
+    /* Warna Khusus Tombol Clear */
+    .clear {
+      background-color: #ff6b6b;
+      color: white;
+    }
+    .clear:hover {
+      background-color: #ee5253;
+    }
+
+    /* Warna Khusus Tombol Sama Dengan */
+    .equal {
+      background-color: #1dd1a1;
+      color: white;
+      grid-column: span 2; /* Tombol ini melebar 2 kolom */
+    }
+    .equal:hover {
+      background-color: #10ac84;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="calculator">
+    <h2>Kalkulator</h2>
+    <input type="text" id="layar" readonly>
+
+    <div class="tombol">
+      <button class="clear" onclick="hapus()">C</button>
+      <button class="operator" onclick="tambahAngka('/')">/</button>
+      <button class="operator" onclick="tambahAngka('*')">x</button>
+      <button class="operator" onclick="tambahAngka('-')">-</button>
+
+      <button onclick="tambahAngka('7')">7</button>
+      <button onclick="tambahAngka('8')">8</button>
+      <button onclick="tambahAngka('9')">9</button>
+      <button class="operator" onclick="tambahAngka('+')">+</button>
+
+      <button onclick="tambahAngka('4')">4</button>
+      <button onclick="tambahAngka('5')">5</button>
+      <button onclick="tambahAngka('6')">6</button>
+      <button onclick="tambahAngka('.')">.</button> 
+
+      <button onclick="tambahAngka('1')">1</button>
+      <button onclick="tambahAngka('2')">2</button>
+      <button onclick="tambahAngka('3')">3</button>
+      <button onclick="tambahAngka('0')">0</button>
+
+      <button class="equal" style="grid-column: span 4;" onclick="hitung()">=</button>
+    </div>
+  </div>
+
+  <script>
+    function tambahAngka(angka) {
+      document.getElementById("layar").value += angka;
+    }
+
+    function hitung() {
+      let layar = document.getElementById("layar");
+      try {
+        // Mengganti 'x' visual menjadi '*' untuk evaluasi kode jika diperlukan, 
+        // tapi di tombol onclick saya sudah pakai '*'
+        layar.value = eval(layar.value);
+      } catch (e) {
+        layar.value = "Error";
+      }
+    }
+
+    function hapus() {
+      document.getElementById("layar").value = "";
+    }
+  </script>
+</body>
+</html>
