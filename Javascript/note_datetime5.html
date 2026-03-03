@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Catatan Harian + Storage</title>
+  <style>
+    /* --- CSS Tampilan (Sama seperti sebelumnya + tambahan untuk tombol hapus) --- */
+    body {
+      font-family: Arial, sans-serif;
+      background: #e0f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .box {
+      width: 350px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #006064;
+      margin-top: 0;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    /* Tombol Tambah (Biru) */
+    .btn-add {
+      padding: 10px 20px;
+      background-color: #00bcd4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-add:hover { background-color: #0097a7; }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* Update: Menggunakan Flexbox di LI agar teks dan tombol hapus berseberangan */
+    li {
+      background-color: #f9f9f9;
+      border-bottom: 1px solid #eee;
+      padding: 10px;
+      color: #333;
+      display: flex; /* Agar teks di kiri, tombol di kanan */
+      justify-content: space-between; 
+      align-items: center;
+    }
+
+    /* Tombol Hapus (Merah Kecil) */
+    .btn-hapus {
+      background-color: #ff5252;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 12px;
+      margin-left: 10px;
+    }
+
+    .btn-hapus:hover { background-color: #d32f2f; }
+
+    /* Tombol Mode */
+.btn-mode {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #eeeeee;
+}
+
+/* ===== DARK MODE ===== */
+body.dark {
+  background: #121212;
+}
+
+body.dark .box {
+  background: #1e1e1e;
+  color: white;
+}
+
+body.dark h2 {
+  color: #4dd0e1;
+}
+
+body.dark li {
+  background-color: #2c2c2c;
+  color: white;
+}
+
+body.dark input {
+  background-color: #333;
+  color: white;
+  border: 1px solid #555;
+}
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>Catatan Saya</h2>
+    <h2>Developed by Rully Faizal</h2>
+    <button class="btn-mode" onclick="toggleMode()">🌙 Mode Gelap</button>
+    
+    <div class="input-group">
+      <input type="text" id="catatan" placeholder="Isi kegiatan...">
+      <button class="btn-add" onclick="tambah()">Tambah</button>
+    </div>
+
+    <ul id="daftar">
+      </ul>
+  </div>
+
+  <script>
+    // 1. Ambil data dari "Gudang Browser" (Local Storage) saat pertama kali dibuka
+    // Jika gudang kosong, pakai array kosong []
+    let dataSimpanan = localStorage.getItem("catatan_harian");
+    let catatan = JSON.parse(dataSimpanan) || [];
+
+    // Tampilkan data yang sudah ada saat halaman dimuat
+    tampilkan();
+
+    function tambah() {
+  let input = document.getElementById("catatan");
+
+  if (input.value === "") return alert("Tulis dulu!");
+
+  // Ambil waktu sekarang
+  let sekarang = new Date();
+
+  let tanggal = sekarang.toLocaleDateString("id-ID", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric"
+  });
+
+  let jam = sekarang.toLocaleTimeString("id-ID", {
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+
+  let waktuLengkap = `${tanggal} - ${jam}`;
+
+  // Simpan sebagai object
+  catatan.push({
+    teks: input.value,
+    waktu: waktuLengkap
+  });
+
+  simpanKeBrowser();
+  tampilkan();
+  input.value = "";
+}
+
+    function hapus(index) {
+      // Menghapus 1 item berdasarkan nomor urut (index)
+      catatan.splice(index, 1);
+      
+      simpanKeBrowser(); // Simpan perubahan
+      tampilkan();       // Update layar
+    }
+
+    // Fungsi Pembantu: Menyimpan Array ke Local Storage
+    function simpanKeBrowser() {
+      // Array harus diubah jadi Teks (JSON) agar bisa masuk storage
+      let dataTeks = JSON.stringify(catatan);
+      localStorage.setItem("catatan_harian", dataTeks);
+    }
+
+    function tampilkan() {
+  let list = "";
+
+  for (let i = 0; i < catatan.length; i++) {
+    list += `
+      <li>
+        <div>
+          <strong>${catatan[i].teks}</strong><br>
+          <small style="color:gray">${catatan[i].waktu}</small>
+        </div>
+        <button class="btn-hapus" onclick="hapus(${i})">Hapus</button>
+      </li>
+    `;
+  }
+
+  document.getElementById("daftar").innerHTML = list;
+}
+    // Cek mode yang tersimpan saat pertama kali dibuka
+let modeTersimpan = localStorage.getItem("mode");
+if (modeTersimpan === "dark") {
+  document.body.classList.add("dark");
+  document.querySelector(".btn-mode").innerText = "☀ Mode Terang";
+}
+
+function toggleMode() {
+  document.body.classList.toggle("dark");
+  
+  let tombol = document.querySelector(".btn-mode");
+  
+  if (document.body.classList.contains("dark")) {
+    localStorage.setItem("mode", "dark");
+    tombol.innerText = "☀ Mode Terang";
+  } else {
+    localStorage.setItem("mode", "light");
+    tombol.innerText = "🌙 Mode Gelap";
+  }
+}
+  </script>
+
+</body>
+</html>
