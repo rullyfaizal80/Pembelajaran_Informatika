@@ -30,37 +30,37 @@
 
     <script>
         let skorUser = 0;
-let skorKomputer = 0;
+        let skorKomputer = 0;
 
-function pilihanKomputer() {
-  let pilihan = ['batu', 'gunting', 'kertas'];
-  let random = Math.floor(Math.random() * 3);
-  return pilihan[random];
-}
+        function pilihanKomputer() {
+            let pilihan = ['batu', 'gunting', 'kertas'];
+            let random = Math.floor(Math.random() * 3);
+            return pilihan[random];
+        }
 
-function main(pilihanUser) {
-  let komputer = pilihanKomputer();
-  let hasil = "";
+        function main(pilihanUser) {
+            let komputer = pilihanKomputer();
+            let hasil = "";
 
-  if (pilihanUser === komputer) {
-    hasil = "Seri!";
-  } else if (
-    (pilihanUser === 'batu' && komputer === 'gunting') ||
-    (pilihanUser === 'gunting' && komputer === 'kertas') ||
-    (pilihanUser === 'kertas' && komputer === 'batu')
-  ) {
-    hasil = "Kamu Menang!";
-    skorUser++;
-  } else {
-    hasil = "Kamu Kalah!";
-    skorKomputer++;
-  }
+            if (pilihanUser === komputer) {
+                hasil = "Seri!";
+            } else if (
+                (pilihanUser === 'batu' && komputer === 'gunting') ||
+                (pilihanUser === 'gunting' && komputer === 'kertas') ||
+                (pilihanUser === 'kertas' && komputer === 'batu')
+                ) {
+                hasil = "Kamu Menang!";
+                skorUser++;
+            } else {
+                hasil = "Kamu Kalah!";
+                skorKomputer++;
+            }
 
-  document.getElementById("hasil").innerHTML =
-    `Kamu: ${pilihanUser} | Komputer: ${komputer} <br> ${hasil}`;
+            document.getElementById("hasil").innerHTML =
+                `Kamu: ${pilihanUser} | Komputer: ${komputer} <br> ${hasil}`;
 
-  document.getElementById("skor").innerHTML =
-    `Skor Kamu: ${skorUser} | Skor Komputer: ${skorKomputer}`;
+            document.getElementById("skor").innerHTML =
+                `Skor Kamu: ${skorUser} | Skor Komputer: ${skorKomputer}`;
 }
     </script>
 </body>
