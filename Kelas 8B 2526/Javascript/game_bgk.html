@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Suit Jepang</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Game Suit Jepang</h2>
+
+    <button onclick="main('batu')">Batu</button>
+    <button onclick="main('gunting')">Gunting</button>
+    <button onclick="main('Kertas')">Kertas</button>
+
+    <p id="hasil"></p>
+    <p id="skor"></p>
+
+    <script>
+        let skorUser = 0;
+        let skorKomputer = 0;
+
+        function pilihanKomputer() {
+            let pilihan = ['batu', 'gunting', 'kertas'];
+            let random = Math.floor(Math.random() * 3);
+            return pilihan[random];
+        }
+
+        function main(pilihanUser) {
+            let komputer = pilihanKomputer();
+            let hasil = "";
+
+            if (pilihanUser === komputer) {
+                hasil = "Seri !";                
+            } else if (
+                (pilihanUser === 'batu' && komputer === 'gunting') || 
+                (pilihanUser === 'gunting' && komputer === 'kertas') ||
+                (pilihanUser === 'kertas' && komputer === 'batu')
+            ) {
+                hasil = 'Kamu Menang!';
+                skorUser++;
+            } else {
+                hasil = 'Kamu Kalah!';
+                skorKomputer++;
+            }
+
+            document.getElementById("hasil").innerHTML =
+            `Kamu : ${pilihanUser} | Komputer : ${komputer} <br> ${hasil}`;
+
+            document.getElementById("skor").innerHTML =
+            `Skor Kamu : ${skorUser} | Skor Komputer : ${skorKomputer}`;
+        }
+    </script>
+</body>
+</html>
