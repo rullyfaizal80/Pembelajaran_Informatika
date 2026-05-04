@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML dengan CSS</title>
+    <style>
+        /* CSS untuk mempercantik seluruh halaman */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 40px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        /* Perbedaan ID (Simbol #): Hanya untuk SATU elemen */
+        #kotak-spesial {
+            background-color: #e74c3c;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        /* Perbedaan Class (Simbol .): Bisa digunakan BERULANG */
+        .kartu {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            border-left: 5px solid #3498db;
+        }
+    </style>
+</head>
+<body>
+    <h1>Halo, Ini Halaman Berwarna</h1>
+    <p>Halaman ini jauh lebih rapi karena sentuhan CSS.</p>
+    
+    <!-- ID unik: Hanya ada satu 'kotak-spesial' -->
+    <div id="kotak-spesial">
+        Saya adalah elemen dengan ID (unik).
+    </div>
+
+    <!-- Class: Bisa dipakai berkali-kali untuk elemen yang sama fungsinya -->
+    <div class="kartu">Saya adalah Class pertama.</div>
+    <div class="kartu">Saya adalah Class kedua.</div>
+</body>
+</html>

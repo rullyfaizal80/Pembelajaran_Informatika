@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Game Siswa</title>
+    <style>
+        :root {
+            --primary: #00ffcc;
+            --bg: #121212;
+            --card-bg: #1e1e1e;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 { text-align: center; color: var(--primary); margin-bottom: 30px; }
+
+        /* Filter Kategori */
+        .filter-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .filter-btn {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 20px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: #000;
+        }
+
+        /* Grid Game */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: 0.3s;
+            display: block; /* Default tampil */
+        }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
+        
+        .screenshot {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: #333;
+        }
+        .info { padding: 20px; text-align: center; }
+        .class-tag {
+            font-size: 0.8rem;
+            background: #444;
+            padding: 3px 10px;
+            border-radius: 10px;
+            color: #bbb;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: #000;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Portal Game Karya Siswa</h1>
+    <h1>MIMHa Tsanawiyah Informatika</h1>
+
+    <!-- Menu Kategori Kelas -->
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterGame('all')">Semua Kelas</button>
+        <button class="filter-btn" onclick="filterGame('8A-2526')">8A (2025/2026)</button>
+        <button class="filter-btn" onclick="filterGame('8B-2526')">8B (2025/2026)</button>        
+    </div>
+
+    <div class="container" id="gameGrid">
+        
+        <!-- Game 1 -->
+        <div class="card" data-category="8A-2526">
+            <img src="img/game1.jpg" alt="Game 1" class="screenshot">
+            <div class="info">
+                <span class="class-tag">8A (2025/2026)</span>
+                <h3>Snake Game by Rully Faizal</h3>                
+                <a href="8a2526/game_snake.html" target="_blank" class="btn">Mainkan</a>
+            </div>
+        </div>
+
+        <!-- Game 2 (Contoh Kelas 11) -->
+        <div class="card" data-category="8B-2526">
+            <img src="img/game1.jpg" alt="Game 2" class="screenshot">
+            <div class="info">
+                <span class="class-tag">8B (2025/2026)</span>
+                <h3>Space Shooter</h3>
+                <a href="8a2526/game_snake.html" target="_blank" class="btn">Mainkan</a>
+            </div>
+        </div>
+
+        <!-- Game 3 (Contoh Kelas 12) -->
+        <div class="card" data-category="12-RPL">
+            <img src="img/game3.jpg" alt="Game 3" class="screenshot">
+            <div class="info">
+                <span class="class-tag">Kelas 12 RPL</span>
+                <h3>Cyber Runner</h3>
+                <a href="game3/index.html" target="_blank" class="btn">Mainkan</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function filterGame(category) {
+            const cards = document.querySelectorAll('.card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Atur tombol aktif
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.innerText.includes(category) || (category === 'all' && btn.innerText.includes('Semua'))) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Saring Card
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
