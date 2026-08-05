@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Isi</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f5f5;
+            color: #222222;
+            margin: 0;
+            padding: 30px;
+        }
+        .wadah {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+        p.deskripsi {
+            color: #555555;
+            margin-top: 0;
+            margin-bottom: 24px;
+        }
+        a.item {
+            display: block;
+            background-color: white;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #222222;
+        }
+        a.item .angka {
+            display: inline-block;
+            width: 22px;
+            color: #2e7d52;
+            font-weight: bold;
+        }
+        a.item .nama {
+            font-weight: bold;
+        }
+        a.item .ket {
+            display: block;
+            font-size: 13px;
+            color: #777777;
+            margin-left: 22px;
+        }
+        a.item:hover {
+            border-color: #2e7d52;
+            background-color: #eafaf1;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wadah">
+        <h1>Praktik CSS Dasar</h1>
+        <p class="deskripsi">Klik salah satudi bawah untuk membuka contohnya. Setiap file fokus pada satu topik saja</p>
+
+        <a class="item" href="1-navigasi.html">
+            <span class="angka">1</span><span class="nama">Navigasi</span>
+            <span class="ket">Navbar sederhana dengan flexbox</span>
+        </a>
+        <a class="item" href="2-card.html">
+            <span class="angka">2</span><span class="nama">Card</span>
+            <span class="ket">Kartu dengan bayangan dan efek hover</span>
+        </a>
+        
+    </div>
+</body>
+</html>
