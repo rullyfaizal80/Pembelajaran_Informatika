@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>8. Animasi</title>
+<style>
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #222222;
+    margin: 0;
+    padding: 30px;
+  }
+
+  h1 { font-size: 22px; }
+  h2 { font-size: 16px; margin-top: 30px; }
+  p { color: #555555; }
+
+  /* link kembali ke halaman daftar isi */
+  a.kembali {
+    display: inline-block;
+    margin-top: 24px;
+    color: #2e7d52;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  a.kembali:hover {
+    text-decoration: underline;
+  }
+
+  /* ======================================
+     TRANSITION
+     Membuat perubahan CSS (warna/ukuran) menjadi halus,
+     bukan langsung berubah tiba-tiba
+  ====================================== */
+
+  .kotak-transisi {
+    width: 90px;
+    height: 90px;
+    background-color: #2e7d52;
+    border-radius: 8px;
+
+    transition: all 0.3s ease;  /* semua perubahan terjadi selama 0.3 detik */
+  }
+
+  .kotak-transisi:hover {
+    background-color: #c9a24b;
+    transform: scale(1.15);      /* membesar 15% saat dihover */
+    border-radius: 50%;          /* berubah jadi lingkaran */
+  }
+
+  /* ======================================
+     KEYFRAMES
+     Animasi yang berjalan otomatis terus-menerus,
+     tanpa perlu di-hover
+  ====================================== */
+
+  @keyframes putar {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  .kotak-putar {
+    width: 50px;
+    height: 50px;
+    border: 6px solid #dddddd;
+    border-top: 6px solid #2e7d52;
+    border-radius: 50%;
+
+    animation: putar 1s linear infinite; /* jalankan animasi "putar" terus menerus */
+  }
+
+</style>
+</head>
+<body>
+
+  <h1>8. Praktik Animasi</h1>
+  <p>Dua jenis animasi: transition (butuh hover) dan keyframes (berjalan otomatis).</p>
+
+  <h2>Transition — arahkan kursor ke kotak</h2>
+  <div class="kotak-transisi"></div>
+
+  <h2>Keyframes — berputar otomatis</h2>
+  <div class="kotak-putar"></div>
+
+  <a class="kembali" href="index.html">&larr; Kembali ke daftar isi</a>
+
+</body>
+</html>

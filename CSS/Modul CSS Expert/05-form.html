@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praktik: Form</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF1F6; --surface:#FFFFFF; --surface-alt:#F4F6FA; --ink:#1B2430; --ink-soft:#5B6472;
+    --line:#DCE1EA; --pine:#2F6F4F; --pine-dark:#1F4E37;
+    --shadow-sm:0 1px 2px rgba(27,36,48,0.06);
+    --font-display:'Fraunces',serif; --font-body:'Inter',sans-serif; --font-mono:'JetBrains Mono',monospace;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:var(--font-body); background:var(--bg); color:var(--ink); }
+  .page{ max-width:640px; margin:0 auto; padding: 40px 24px; }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:0.72rem; letter-spacing:1.5px; text-transform:uppercase;
+    color:var(--pine-dark); background:rgba(47,111,79,0.08); display:inline-block;
+    padding:6px 12px; border-radius:999px; margin-bottom:12px;
+  }
+  h1{ font-family:var(--font-display); margin:0 0 6px; }
+  p.note{ color:var(--ink-soft); margin:0 0 30px; max-width:60ch; }
+  a.back{ font-family:var(--font-mono); font-size:0.8rem; color:var(--pine-dark); }
+
+  .form-card{
+    background: var(--surface); border:1px solid var(--line); border-radius:14px;
+    padding:26px; box-shadow: var(--shadow-sm);
+  }
+  .field{ margin-bottom:18px; }
+  .field label{ display:block; font-size:0.8rem; font-weight:600; margin-bottom:6px; }
+
+  /* ===================================================
+     INPUT / SELECT / TEXTAREA — teknik: reset tampilan
+     bawaan browser, lalu beri style konsisten + efek fokus
+  =================================================== */
+  .field input[type=text], .field input[type=email], .field select, .field textarea{
+    width:100%; padding:10px 12px; border-radius:9px; border:1px solid var(--line);
+    background: var(--surface-alt); font-family: var(--font-body); font-size:0.9rem;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:none; border-color: var(--pine); box-shadow: 0 0 0 3px rgba(47,111,79,0.15);
+  }
+  .row-2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:480px){ .row-2{ grid-template-columns:1fr; } }
+
+  /* ===================================================
+     TOGGLE SWITCH — teknik: sembunyikan checkbox asli,
+     lalu gambar ulang tampilannya lewat <span> + ::before
+  =================================================== */
+  .switch{ position:relative; display:inline-block; width:44px; height:24px; }
+  .switch input{ opacity:0; width:0; height:0; }
+  .slider-toggle{
+    position:absolute; inset:0; background: var(--line); border-radius:999px; cursor:pointer;
+    transition: background .25s ease;
+  }
+  .slider-toggle::before{
+    content:''; position:absolute; width:18px; height:18px; left:3px; top:3px;
+    background:#fff; border-radius:50%; transition: transform .25s ease; box-shadow: var(--shadow-sm);
+  }
+  .switch input:checked + .slider-toggle{ background: var(--pine); }
+  .switch input:checked + .slider-toggle::before{ transform: translateX(20px); }
+  .toggle-row{ display:flex; align-items:center; gap:12px; }
+
+  .check-row{ display:flex; gap:18px; flex-wrap:wrap; margin-top:6px; }
+  .check-row label{ display:flex; gap:6px; align-items:center; font-size:0.85rem; color: var(--ink-soft); }
+
+  .submit-btn{
+    margin-top:6px; background: var(--pine-dark); color:#fff; border:none;
+    padding: 11px 22px; border-radius:10px; font-weight:600; cursor:pointer;
+    transition: background .2s ease;
+  }
+  .submit-btn:hover{ background: var(--pine); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="eyebrow">05 · form</div>
+  <h1>Elemen Form</h1>
+  <p class="note">Styling ulang tampilan bawaan browser untuk input, select, textarea, radio/checkbox, dan toggle switch kustom berbasis checkbox tersembunyi.</p>
+
+  <div class="form-card">
+    <div class="row-2">
+      <div class="field">
+        <label for="nama">Nama Lengkap</label>
+        <input type="text" id="nama" placeholder="Tulis nama Anda">
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="nama@email.com">
+      </div>
+    </div>
+    <div class="field">
+      <label for="topik">Topik</label>
+      <select id="topik">
+        <option>Pertanyaan umum</option>
+        <option>Kerja sama</option>
+        <option>Laporan bug</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="pesan">Pesan</label>
+      <textarea id="pesan" rows="3" placeholder="Tulis pesan singkat..."></textarea>
+    </div>
+    <div class="field toggle-row">
+      <label class="switch">
+        <input type="checkbox" checked>
+        <span class="slider-toggle"></span>
+      </label>
+      <span style="font-size:0.85rem;color:var(--ink-soft)">Kirim salinan ke email saya</span>
+    </div>
+    <div class="check-row">
+      <label><input type="radio" name="prioritas" checked> Prioritas biasa</label>
+      <label><input type="radio" name="prioritas"> Prioritas tinggi</label>
+      <label><input type="checkbox"> Saya setuju dengan ketentuan</label>
+    </div>
+    <button class="submit-btn">Kirim</button>
+  </div>
+
+  <p style="margin-top:30px;"><a class="back" href="index.html">&larr; kembali ke daftar isi</a></p>
+</div>
+</body>
+</html>

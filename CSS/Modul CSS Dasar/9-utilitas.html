@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>9. Utilitas</title>
+<style>
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #222222;
+    margin: 0;
+    padding: 30px;
+  }
+
+  h1 { font-size: 22px; }
+  h2 { font-size: 16px; margin-top: 30px; }
+  p { color: #555555; }
+
+  /* link kembali ke halaman daftar isi */
+  a.kembali {
+    display: inline-block;
+    margin-top: 24px;
+    color: #2e7d52;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  a.kembali:hover {
+    text-decoration: underline;
+  }
+
+  /* ======================================
+     BADGE (label kecil)
+  ====================================== */
+
+  .badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+  }
+  .badge-hijau  { background-color: #2e7d52; }
+  .badge-kuning { background-color: #c9a24b; }
+  .badge-merah  { background-color: #c0392b; }
+
+  /* ======================================
+     ALERT BOX (kotak pemberitahuan)
+  ====================================== */
+
+  .alert {
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    border-left: 4px solid;
+  }
+  .alert-sukses {
+    background-color: #eafaf1;
+    border-color: #2e7d52;
+    color: #1f5c3a;
+  }
+  .alert-peringatan {
+    background-color: #fdf3e0;
+    border-color: #c9a24b;
+    color: #7a5f1f;
+  }
+  .alert-gagal {
+    background-color: #fdecea;
+    border-color: #c0392b;
+    color: #8b291d;
+  }
+
+  /* ======================================
+     PROGRESS BAR
+  ====================================== */
+
+  .progress-luar {
+    width: 100%;
+    max-width: 300px;
+    height: 14px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;   /* agar bar dalam tidak keluar dari sudut melengkung */
+  }
+
+  .progress-dalam {
+    height: 100%;
+    background-color: #2e7d52;
+  }
+
+</style>
+</head>
+<body>
+
+  <h1>9. Praktik Utilitas</h1>
+  <p>Komponen kecil yang sering dipakai: badge, alert, dan progress bar.</p>
+
+  <h2>Badge</h2>
+  <span class="badge badge-hijau">Aktif</span>
+  <span class="badge badge-kuning">Menunggu</span>
+  <span class="badge badge-merah">Gagal</span>
+
+  <h2>Alert Box</h2>
+  <div class="alert alert-sukses">Berhasil disimpan!</div>
+  <div class="alert alert-peringatan">Hati-hati, sesi akan berakhir.</div>
+  <div class="alert alert-gagal">Terjadi kesalahan.</div>
+
+  <h2>Progress Bar</h2>
+  <div class="progress-luar">
+    <div class="progress-dalam" style="width: 60%;"></div>
+  </div>
+
+  <a class="kembali" href="index.html">&larr; Kembali ke daftar isi</a>
+
+</body>
+</html>

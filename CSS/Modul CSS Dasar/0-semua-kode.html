@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semua Kode — Praktik CSS Dasar</title>
+<style>
+
+  /* ============================================
+     GAYA UMUM HALAMAN
+  ============================================ */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #222222;
+    margin: 0;
+    padding: 30px;
+  }
+  h1.judul-utama { font-size: 26px; margin-bottom: 4px; }
+  p.deskripsi-utama { color: #555555; margin-top: 0; }
+
+  /* link kembali ke halaman daftar isi */
+  a.kembali {
+    display: inline-block;
+    margin-top: 26px;
+    color: #2e7d52;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  a.kembali:hover {
+    text-decoration: underline;
+  }
+
+  section {
+    background-color: #ffffff;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    padding: 24px;
+    margin-top: 26px;
+  }
+  section h2 {
+    font-size: 18px;
+    color: #2e7d52;
+    margin-top: 0;
+  }
+  section > p.ket {
+    color: #666666;
+    font-size: 14px;
+    margin-top: -6px;
+    margin-bottom: 18px;
+  }
+  section h3.contoh-judul {
+    font-size: 14px;
+    margin: 20px 0 8px;
+  }
+
+
+  /* ============================================
+     1. NAVIGASI
+  ============================================ */
+  #sec-navigasi .navbar {
+    background-color: #2e7d52;
+    padding: 12px 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #sec-navigasi .navbar .logo {
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  #sec-navigasi .navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+  }
+  #sec-navigasi .navbar ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+  }
+  #sec-navigasi .navbar ul li a:hover {
+    background-color: #256a44;
+  }
+
+
+  /* ============================================
+     2. CARD
+  ============================================ */
+  #sec-card .card {
+    width: 220px;
+    background-color: white;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+  }
+  #sec-card .card:hover {
+    transform: translateY(-6px);
+  }
+  #sec-card .card .gambar {
+    height: 100px;
+    background-color: #2e7d52;
+  }
+  #sec-card .card .isi {
+    padding: 14px;
+  }
+  #sec-card .card .isi h4 {
+    margin: 0 0 6px 0;
+    font-size: 16px;
+  }
+  #sec-card .card .isi p {
+    margin: 0;
+    font-size: 14px;
+    color: #555555;
+  }
+
+
+  /* ============================================
+     3. TOMBOL
+  ============================================ */
+  #sec-tombol button {
+    font-size: 14px;
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  #sec-tombol .btn-primer { background-color: #2e7d52; color: white; }
+  #sec-tombol .btn-primer:hover { background-color: #256a44; }
+  #sec-tombol .btn-sekunder { background-color: white; color: #2e7d52; border: 2px solid #2e7d52; }
+  #sec-tombol .btn-sekunder:hover { background-color: #2e7d52; color: white; }
+  #sec-tombol .btn-bahaya { background-color: #c0392b; color: white; }
+  #sec-tombol .btn-bahaya:hover { background-color: #a13023; }
+  #sec-tombol button:disabled { background-color: #cccccc; color: #888888; cursor: not-allowed; }
+
+
+  /* ============================================
+     4. FLEXBOX
+  ============================================ */
+  #sec-flexbox .kotak {
+    background-color: #2e7d52;
+    color: white;
+    padding: 16px;
+    border-radius: 6px;
+    text-align: center;
+  }
+  #sec-flexbox .contoh-1 { display: flex; gap: 10px; }
+  #sec-flexbox .contoh-2 {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fafafa;
+    border: 1px dashed #cccccc;
+    padding: 10px;
+  }
+  #sec-flexbox .contoh-2 .kotak { width: 80px; }
+  #sec-flexbox .contoh-3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background-color: #fafafa;
+    border: 1px dashed #cccccc;
+  }
+
+
+  /* ============================================
+     5. GRID
+  ============================================ */
+  #sec-grid .kotak {
+    background-color: #2e7d52;
+    color: white;
+    padding: 16px;
+    border-radius: 6px;
+    text-align: center;
+  }
+  #sec-grid .contoh-1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  }
+  #sec-grid .contoh-2 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+
+  /* ============================================
+     6. FORM
+  ============================================ */
+  #sec-form .form-wadah {
+    background-color: #fafafa;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 320px;
+  }
+  #sec-form .grup { margin-bottom: 14px; }
+  #sec-form .grup label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  #sec-form .grup input,
+  #sec-form .grup select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  #sec-form .grup input:focus,
+  #sec-form .grup select:focus {
+    outline: none;
+    border-color: #2e7d52;
+  }
+  #sec-form .tombol-kirim {
+    background-color: #2e7d52;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+
+  /* ============================================
+     7. TIPOGRAFI
+  ============================================ */
+  #sec-tipografi .contoh-h2 { font-size: 20px; font-weight: bold; color: #2e7d52; margin: 10px 0 4px; }
+  #sec-tipografi .contoh-h3 { font-size: 16px; font-weight: bold; margin: 4px 0; }
+  #sec-tipografi .teks-biasa { font-size: 14px; line-height: 1.6; }
+  #sec-tipografi .teks-kecil { font-size: 12px; color: #888888; }
+  #sec-tipografi .kutipan {
+    font-style: italic;
+    border-left: 4px solid #2e7d52;
+    padding-left: 12px;
+    color: #444444;
+  }
+  #sec-tipografi code {
+    background-color: #eeeeee;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+  }
+
+
+  /* ============================================
+     8. ANIMASI
+  ============================================ */
+  #sec-animasi .kotak-transisi {
+    width: 80px;
+    height: 80px;
+    background-color: #2e7d52;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  #sec-animasi .kotak-transisi:hover {
+    background-color: #c9a24b;
+    transform: scale(1.15);
+    border-radius: 50%;
+  }
+  @keyframes putar {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  #sec-animasi .kotak-putar {
+    width: 46px;
+    height: 46px;
+    border: 6px solid #dddddd;
+    border-top: 6px solid #2e7d52;
+    border-radius: 50%;
+    animation: putar 1s linear infinite;
+  }
+  #sec-animasi .baris-animasi {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+
+
+  /* ============================================
+     9. UTILITAS
+  ============================================ */
+  #sec-utilitas .badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+  }
+  #sec-utilitas .badge-hijau  { background-color: #2e7d52; }
+  #sec-utilitas .badge-kuning { background-color: #c9a24b; }
+  #sec-utilitas .badge-merah  { background-color: #c0392b; }
+
+  #sec-utilitas .alert {
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-top: 14px;
+    border-left: 4px solid;
+  }
+  #sec-utilitas .alert-sukses { background-color: #eafaf1; border-color: #2e7d52; color: #1f5c3a; }
+  #sec-utilitas .alert-peringatan { background-color: #fdf3e0; border-color: #c9a24b; color: #7a5f1f; }
+  #sec-utilitas .alert-gagal { background-color: #fdecea; border-color: #c0392b; color: #8b291d; }
+
+  #sec-utilitas .progress-luar {
+    width: 100%;
+    max-width: 300px;
+    height: 14px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 14px;
+  }
+  #sec-utilitas .progress-dalam {
+    height: 100%;
+    background-color: #2e7d52;
+  }
+
+</style>
+</head>
+<body>
+
+  <h1 class="judul-utama">Semua Kode — Praktik CSS Dasar</h1>
+  <p class="deskripsi-utama">Satu halaman ini memuat seluruh contoh dari 9 file sebelumnya (navigasi, card, tombol, flexbox, grid, form, tipografi, animasi, utilitas).</p>
+
+  <!-- 1. NAVIGASI -->
+  <section id="sec-navigasi">
+    <h2>1. Navigasi</h2>
+    <p class="ket">Menyusun logo dan menu sejajar memakai <code>display: flex</code>.</p>
+    <nav class="navbar">
+      <div class="logo">Websiteku</div>
+      <ul>
+        <li><a href="#">Beranda</a></li>
+        <li><a href="#">Tentang</a></li>
+        <li><a href="#">Kontak</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <!-- 2. CARD -->
+  <section id="sec-card">
+    <h2>2. Card</h2>
+    <p class="ket">Kartu dengan bayangan (<code>box-shadow</code>) dan efek naik saat hover.</p>
+    <div class="card">
+      <div class="gambar"></div>
+      <div class="isi">
+        <h4>Judul Card</h4>
+        <p>Contoh deskripsi singkat di dalam card.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. TOMBOL -->
+  <section id="sec-tombol">
+    <h2>3. Tombol</h2>
+    <p class="ket">Beberapa gaya tombol dengan warna dan status berbeda.</p>
+    <button class="btn-primer">Simpan</button>
+    <button class="btn-sekunder">Batal</button>
+    <button class="btn-bahaya">Hapus</button>
+    <button class="btn-primer" disabled>Nonaktif</button>
+  </section>
+
+  <!-- 4. FLEXBOX -->
+  <section id="sec-flexbox">
+    <h2>4. Flexbox</h2>
+    <p class="ket">Menyusun kotak sejajar horizontal dengan <code>display: flex</code>.</p>
+
+    <h3 class="contoh-judul">Contoh 1: flex biasa</h3>
+    <div class="contoh-1">
+      <div class="kotak">1</div>
+      <div class="kotak">2</div>
+      <div class="kotak">3</div>
+    </div>
+
+    <h3 class="contoh-judul">Contoh 2: justify-content: space-between</h3>
+    <div class="contoh-2">
+      <div class="kotak">A</div>
+      <div class="kotak">B</div>
+      <div class="kotak">C</div>
+    </div>
+
+    <h3 class="contoh-judul">Contoh 3: kotak di tengah</h3>
+    <div class="contoh-3">
+      <div class="kotak" style="width:80px;">Tengah</div>
+    </div>
+  </section>
+
+  <!-- 5. GRID -->
+  <section id="sec-grid">
+    <h2>5. Grid</h2>
+    <p class="ket">Menyusun kotak dalam baris dan kolom memakai <code>display: grid</code>.</p>
+
+    <h3 class="contoh-judul">Contoh 1: 3 kolom sama besar</h3>
+    <div class="contoh-1">
+      <div class="kotak">1</div>
+      <div class="kotak">2</div>
+      <div class="kotak">3</div>
+    </div>
+
+    <h3 class="contoh-judul">Contoh 2: kolom 2fr dan 1fr</h3>
+    <div class="contoh-2">
+      <div class="kotak">Lebar 2</div>
+      <div class="kotak">Lebar 1</div>
+    </div>
+  </section>
+
+  <!-- 6. FORM -->
+  <section id="sec-form">
+    <h2>6. Form</h2>
+    <p class="ket">Input, select, dan tombol kirim dengan efek fokus.</p>
+    <div class="form-wadah">
+      <div class="grup">
+        <label for="nama">Nama</label>
+        <input type="text" id="nama" placeholder="Tulis nama Anda">
+      </div>
+      <div class="grup">
+        <label for="kota">Kota</label>
+        <select id="kota">
+          <option>Jakarta</option>
+          <option>Bandung</option>
+          <option>Surabaya</option>
+        </select>
+      </div>
+      <button class="tombol-kirim">Kirim</button>
+    </div>
+  </section>
+
+  <!-- 7. TIPOGRAFI -->
+  <section id="sec-tipografi">
+    <h2>7. Tipografi</h2>
+    <p class="ket">Berbagai ukuran dan gaya teks.</p>
+    <div class="contoh-h2">Ini contoh Heading 2</div>
+    <div class="contoh-h3">Ini contoh Heading 3</div>
+    <p class="teks-biasa">Ini paragraf teks biasa berukuran 14px dengan jarak antar baris yang nyaman dibaca.</p>
+    <p class="teks-kecil">Ini teks kecil untuk keterangan tambahan.</p>
+    <p class="kutipan">"Ini contoh kutipan dengan huruf miring dan garis di sisi kiri."</p>
+    <p class="teks-biasa">Contoh menulis kode: <code>color: red;</code></p>
+  </section>
+
+  <!-- 8. ANIMASI -->
+  <section id="sec-animasi">
+    <h2>8. Animasi</h2>
+    <p class="ket"><code>transition</code> butuh hover, <code>@keyframes</code> berjalan otomatis.</p>
+    <div class="baris-animasi">
+      <div>
+        <h3 class="contoh-judul">Hover kotak ini</h3>
+        <div class="kotak-transisi"></div>
+      </div>
+      <div>
+        <h3 class="contoh-judul">Berputar otomatis</h3>
+        <div class="kotak-putar"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. UTILITAS -->
+  <section id="sec-utilitas">
+    <h2>9. Utilitas</h2>
+    <p class="ket">Badge, alert box, dan progress bar.</p>
+
+    <span class="badge badge-hijau">Aktif</span>
+    <span class="badge badge-kuning">Menunggu</span>
+    <span class="badge badge-merah">Gagal</span>
+
+    <div class="alert alert-sukses">Berhasil disimpan!</div>
+    <div class="alert alert-peringatan">Hati-hati, sesi akan berakhir.</div>
+    <div class="alert alert-gagal">Terjadi kesalahan.</div>
+
+    <div class="progress-luar">
+      <div class="progress-dalam" style="width: 60%;"></div>
+    </div>
+  </section>
+
+  <a class="kembali" href="index.html">&larr; Kembali ke daftar isi</a>
+
+</body>
+</html>

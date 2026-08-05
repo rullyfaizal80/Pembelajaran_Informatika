@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praktik: Card</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF1F6; --surface:#FFFFFF; --ink:#1B2430; --ink-soft:#5B6472;
+    --line:#DCE1EA; --pine:#2F6F4F; --pine-dark:#1F4E37; --gold:#C9A24B;
+    --radius:14px; --shadow-sm:0 1px 2px rgba(27,36,48,0.06); --shadow-md:0 8px 24px rgba(27,36,48,0.10);
+    --font-display:'Fraunces',serif; --font-body:'Inter',sans-serif; --font-mono:'JetBrains Mono',monospace;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:var(--font-body); background:var(--bg); color:var(--ink); }
+  .page{ max-width:900px; margin:0 auto; padding: 40px 24px; }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:0.72rem; letter-spacing:1.5px; text-transform:uppercase;
+    color:var(--pine-dark); background:rgba(47,111,79,0.08); display:inline-block;
+    padding:6px 12px; border-radius:999px; margin-bottom:12px;
+  }
+  h1{ font-family:var(--font-display); margin:0 0 6px; }
+  p.note{ color:var(--ink-soft); margin:0 0 30px; max-width:60ch; }
+  a.back{ font-family:var(--font-mono); font-size:0.8rem; color:var(--pine-dark); }
+  h2.sub{ font-family:var(--font-display); font-size:1.2rem; margin: 34px 0 14px; }
+
+  .grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+  @media (max-width:720px){ .grid{ grid-template-columns: 1fr 1fr; } }
+  @media (max-width:480px){ .grid{ grid-template-columns: 1fr; } }
+
+  /* ===================================================
+     CARD DASAR — teknik: border-radius, box-shadow,
+     dan transition pada :hover untuk efek "terangkat"
+  =================================================== */
+  .card{
+    background: var(--surface); border:1px solid var(--line); border-radius: var(--radius);
+    overflow:hidden; box-shadow: var(--shadow-sm);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .card:hover{ transform: translateY(-6px); box-shadow: var(--shadow-md); }
+  .card .thumb{ height:110px; background: linear-gradient(135deg, var(--pine), #6FAE8C); }
+  .card .thumb.alt{ background: linear-gradient(135deg, var(--gold), #E8CB8C); }
+  .card-body{ padding: 16px 18px 18px; }
+  .card-body h3{ margin:0 0 6px; font-family: var(--font-display); font-size:1.05rem; }
+  .card-body p{ margin:0; color: var(--ink-soft); font-size:0.88rem; }
+
+  /* ===================================================
+     PROFILE CARD — foto bulat + border ring
+  =================================================== */
+  .profile-card{ text-align:center; padding: 26px 18px; }
+  .avatar{
+    width:72px; height:72px; border-radius:50%; margin: 0 auto 12px;
+    background: linear-gradient(135deg,#4C6EA8,#7FA0D6);
+    border: 3px solid var(--surface); outline: 2px solid var(--line);
+  }
+  .profile-card h3{ margin:0 0 2px; font-family: var(--font-display); }
+  .profile-card span{ font-size:0.8rem; color: var(--ink-soft); }
+
+  /* ===================================================
+     FLIP CARD — teknik: perspective + transform-style
+     preserve-3d + rotateY() saat hover
+  =================================================== */
+  .flip-stage{ perspective: 1200px; height: 210px; }
+  .flip-card{
+    position:relative; width:100%; height:100%;
+    transform-style: preserve-3d;
+    transition: transform .7s cubic-bezier(.2,.8,.2,1);
+    border-radius: var(--radius);
+  }
+  .flip-stage:hover .flip-card{ transform: rotateY(180deg); }
+  .flip-face{
+    position:absolute; inset:0; backface-visibility:hidden;
+    border-radius: var(--radius); padding:20px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .flip-front{ background: var(--surface); border:1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .flip-back{ background: var(--pine-dark); color:#fff; transform: rotateY(180deg); }
+  .flip-front h3{ font-family: var(--font-display); margin:0 0 8px; }
+  .flip-front p, .flip-back p{ margin:0; font-size:0.86rem; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="eyebrow">02 · card</div>
+  <h1>Komponen Card</h1>
+  <p class="note">Tiga variasi card: card dasar dengan hover lift, profile card, dan flip card 3D. Arahkan kursor ke masing-masing untuk melihat interaksinya.</p>
+
+  <h2 class="sub">Card dasar</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="thumb"></div>
+      <div class="card-body">
+        <h3>Judul Kartu</h3>
+        <p>Deskripsi singkat konten kartu di sini.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="thumb alt"></div>
+      <div class="card-body">
+        <h3>Kartu Lainnya</h3>
+        <p>Warna thumbnail bisa diganti sesuai kebutuhan.</p>
+      </div>
+    </div>
+    <div class="card profile-card">
+      <div class="avatar"></div>
+      <h3>Nama Pengguna</h3>
+      <span>UI Designer</span>
+    </div>
+  </div>
+
+  <h2 class="sub">Flip card (transform 3D)</h2>
+  <div class="grid">
+    <div class="flip-stage">
+      <div class="flip-card">
+        <div class="flip-face flip-front">
+          <h3>Arahkan kursor</h3>
+          <p>Kartu ini akan berputar menampilkan sisi belakang.</p>
+        </div>
+        <div class="flip-face flip-back">
+          <p>Dibuat dengan <code>perspective</code>, <code>preserve-3d</code>, dan <code>rotateY()</code>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p style="margin-top:30px;"><a class="back" href="index.html">&larr; kembali ke daftar isi</a></p>
+</div>
+</body>
+</html>

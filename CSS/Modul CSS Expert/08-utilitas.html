@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praktik: Utilitas</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF1F6; --surface:#FFFFFF; --surface-alt:#F4F6FA; --ink:#1B2430; --ink-soft:#5B6472;
+    --line:#DCE1EA; --pine:#2F6F4F; --pine-dark:#1F4E37; --gold:#C9A24B; --danger:#B33F3F;
+    --font-display:'Fraunces',serif; --font-body:'Inter',sans-serif; --font-mono:'JetBrains Mono',monospace;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:var(--font-body); background:var(--bg); color:var(--ink); }
+  .page{ max-width:680px; margin:0 auto; padding: 40px 24px; }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:0.72rem; letter-spacing:1.5px; text-transform:uppercase;
+    color:var(--pine-dark); background:rgba(47,111,79,0.08); display:inline-block;
+    padding:6px 12px; border-radius:999px; margin-bottom:12px;
+  }
+  h1{ font-family:var(--font-display); margin:0 0 6px; }
+  p.note{ color:var(--ink-soft); margin:0 0 30px; max-width:60ch; }
+  a.back{ font-family:var(--font-mono); font-size:0.8rem; color:var(--pine-dark); }
+  h2.sub{ font-family:var(--font-display); font-size:1.1rem; margin: 30px 0 12px; }
+
+  /* ===================================================
+     BADGE — label kecil untuk status, dibuat dari
+     kombinasi background transparan + warna teks senada
+  =================================================== */
+  .badge{
+    display:inline-block; font-size:0.72rem; font-weight:600; padding:3px 10px; border-radius:999px;
+  }
+  .badge-pine{ background: rgba(47,111,79,0.12); color: var(--pine-dark); }
+  .badge-gold{ background: rgba(201,162,75,0.18); color:#7A5F1F; }
+  .badge-danger{ background: rgba(179,63,63,0.12); color: var(--danger); }
+
+  /* ===================================================
+     PROGRESS BAR — dua lapis div, lebar anak diatur
+     lewat inline style atau class util
+  =================================================== */
+  .progress{
+    width:100%; height:10px; border-radius:999px; background: var(--surface-alt);
+    overflow:hidden; border:1px solid var(--line);
+  }
+  .progress > span{
+    display:block; height:100%; border-radius:999px;
+    background: linear-gradient(90deg, var(--pine), var(--gold));
+    transition: width .4s ease;
+  }
+
+  /* ===================================================
+     ALERT BOX — warna latar & border pucat sesuai makna
+     (berhasil / peringatan / gagal)
+  =================================================== */
+  .alert{
+    padding: 12px 16px; border-radius: 8px; font-size:0.86rem;
+    border: 1px solid; display:flex; gap:10px; align-items:flex-start; margin-bottom:10px;
+  }
+  .alert-ok{ background: rgba(47,111,79,0.08); border-color: rgba(47,111,79,0.25); color: var(--pine-dark); }
+  .alert-warn{ background: rgba(201,162,75,0.12); border-color: rgba(201,162,75,0.35); color:#7A5F1F; }
+  .alert-err{ background: rgba(179,63,63,0.08); border-color: rgba(179,63,63,0.25); color: var(--danger); }
+
+  .row{ margin: 14px 0; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="eyebrow">08 · utilitas</div>
+  <h1>Elemen Utilitas</h1>
+  <p class="note">Komponen kecil yang sering dipakai berulang di antarmuka: badge status, progress bar, dan kotak peringatan (alert).</p>
+
+  <h2 class="sub">Badge</h2>
+  <div class="row">
+    <span class="badge badge-pine">Aktif</span>
+    <span class="badge badge-gold">Menunggu</span>
+    <span class="badge badge-danger">Gagal</span>
+  </div>
+
+  <h2 class="sub">Progress bar</h2>
+  <div class="row">
+    <div class="progress"><span style="width:30%"></span></div>
+  </div>
+  <div class="row">
+    <div class="progress"><span style="width:68%"></span></div>
+  </div>
+  <div class="row">
+    <div class="progress"><span style="width:95%"></span></div>
+  </div>
+
+  <h2 class="sub">Alert box</h2>
+  <div class="alert alert-ok">✔ Perubahan berhasil disimpan.</div>
+  <div class="alert alert-warn">⚠ Sesi Anda akan berakhir dalam 5 menit.</div>
+  <div class="alert alert-err">✕ Gagal memuat data, coba lagi.</div>
+
+  <p style="margin-top:30px;"><a class="back" href="index.html">&larr; kembali ke daftar isi</a></p>
+</div>
+</body>
+</html>

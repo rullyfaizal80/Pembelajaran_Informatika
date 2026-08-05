@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>1. Navigasi</title>
+<style>
+
+  /* --- Pengaturan dasar halaman --- */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #222222;
+    margin: 0;
+    padding: 30px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  p {
+    color: #555555;
+  }
+
+  /* link kembali ke halaman daftar isi */
+  a.kembali {
+    display: inline-block;
+    margin-top: 24px;
+    color: #2e7d52;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  a.kembali:hover {
+    text-decoration: underline;
+  }
+
+  /* ======================================
+     NAVIGASI (NAVBAR)
+     Konsep yang dipakai:
+     - display: flex  -> membuat menu tersusun sejajar ke samping
+     - justify-content -> mengatur jarak antar menu
+     - :hover -> efek saat kursor diarahkan ke menu
+  ====================================== */
+
+  .navbar {
+    background-color: #2e7d52;   /* warna latar navbar */
+    padding: 12px 20px;
+    border-radius: 8px;
+
+    display: flex;               /* membuat isi navbar sejajar horizontal */
+    justify-content: space-between; /* logo di kiri, menu di kanan */
+    align-items: center;
+  }
+
+  .navbar .logo {
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .navbar ul {
+    list-style: none;   /* menghilangkan bulatan pada list */
+    margin: 0;
+    padding: 0;
+    display: flex;       /* menu li disusun sejajar */
+    gap: 10px;
+  }
+
+  .navbar ul li a {
+    color: white;
+    text-decoration: none;   /* menghilangkan garis bawah link */
+    padding: 8px 14px;
+    border-radius: 6px;
+  }
+
+  /* efek saat kursor diarahkan ke menu */
+  .navbar ul li a:hover {
+    background-color: #256a44;
+  }
+
+</style>
+</head>
+<body>
+
+  <h1>1. Praktik Navigasi</h1>
+  <p>Contoh navbar sederhana memakai <code>display: flex</code> untuk menyusun logo dan menu secara sejajar.</p>
+
+  <nav class="navbar">
+    <div class="logo">Websiteku</div>
+    <ul>
+      <li><a href="#">Beranda</a></li>
+      <li><a href="#">Tentang</a></li>
+      <li><a href="#">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <a class="kembali" href="index.html">&larr; Kembali ke daftar isi</a>
+
+</body>
+</html>

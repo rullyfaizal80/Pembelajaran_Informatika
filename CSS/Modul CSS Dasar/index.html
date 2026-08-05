@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daftar Isi — Praktik CSS Dasar</title>
+<style>
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #222222;
+    margin: 0;
+    padding: 30px;
+  }
+
+  .wadah {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 4px;
+  }
+
+  p.deskripsi {
+    color: #555555;
+    margin-top: 0;
+    margin-bottom: 24px;
+  }
+
+  /* ======================================
+     DAFTAR LINK
+     Konsep yang dipakai:
+     - text-decoration: none -> hilangkan garis bawah link
+     - display: block -> agar seluruh kotak bisa diklik
+     - :hover -> efek warna saat kursor diarahkan
+  ====================================== */
+
+  a.item {
+    display: block;
+    background-color: white;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #222222;
+  }
+
+  a.item:hover {
+    border-color: #2e7d52;
+    background-color: #eafaf1;
+  }
+
+  a.item .angka {
+    display: inline-block;
+    width: 22px;
+    color: #2e7d52;
+    font-weight: bold;
+  }
+
+  a.item .nama {
+    font-weight: bold;
+  }
+
+  a.item .ket {
+    display: block;
+    font-size: 13px;
+    color: #777777;
+    margin-left: 22px;
+  }
+
+  a.utama {
+    background-color: #2e7d52;
+    color: white;
+    border: none;
+  }
+  a.utama:hover {
+    background-color: #256a44;
+  }
+  a.utama .angka,
+  a.utama .ket {
+    color: white;
+  }
+
+</style>
+</head>
+<body>
+
+  <div class="wadah">
+    <h1>Praktik CSS Dasar</h1>
+    <p class="deskripsi">Klik salah satu di bawah untuk membuka contohnya. Setiap file fokus pada satu topik saja.</p>
+
+    <a class="item" href="1-navigasi.html">
+      <span class="angka">1</span><span class="nama">Navigasi</span>
+      <span class="ket">Navbar sederhana dengan flexbox</span>
+    </a>
+
+    <a class="item" href="2-card.html">
+      <span class="angka">2</span><span class="nama">Card</span>
+      <span class="ket">Kartu dengan bayangan dan efek hover</span>
+    </a>
+
+    <a class="item" href="3-tombol.html">
+      <span class="angka">3</span><span class="nama">Tombol</span>
+      <span class="ket">Berbagai gaya dan status tombol</span>
+    </a>
+
+    <a class="item" href="4-flexbox.html">
+      <span class="angka">4</span><span class="nama">Flexbox</span>
+      <span class="ket">Menyusun kotak sejajar horizontal</span>
+    </a>
+
+    <a class="item" href="5-grid.html">
+      <span class="angka">5</span><span class="nama">Grid</span>
+      <span class="ket">Menyusun kotak dalam baris dan kolom</span>
+    </a>
+
+    <a class="item" href="6-form.html">
+      <span class="angka">6</span><span class="nama">Form</span>
+      <span class="ket">Input, select, dan tombol kirim</span>
+    </a>
+
+    <a class="item" href="7-tipografi.html">
+      <span class="angka">7</span><span class="nama">Tipografi</span>
+      <span class="ket">Ukuran dan gaya teks</span>
+    </a>
+
+    <a class="item" href="8-animasi.html">
+      <span class="angka">8</span><span class="nama">Animasi</span>
+      <span class="ket">Transition dan keyframes</span>
+    </a>
+
+    <a class="item" href="9-utilitas.html">
+      <span class="angka">9</span><span class="nama">Utilitas</span>
+      <span class="ket">Badge, alert box, progress bar</span>
+    </a>
+
+    <a class="item utama" href="0-semua-kode.html">
+      <span class="angka">★</span><span class="nama">Semua Kode dalam 1 File</span>
+      <span class="ket">Gabungan seluruh 9 topik di atas</span>
+    </a>
+  </div>
+
+</body>
+</html>

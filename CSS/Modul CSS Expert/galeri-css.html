@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galeri Komponen CSS — Referensi Praktis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  /* ============ DESIGN TOKENS ============ */
+  :root{
+    --bg: #EEF1F6;
+    --surface: #FFFFFF;
+    --surface-alt: #F4F6FA;
+    --ink: #1B2430;
+    --ink-soft: #5B6472;
+    --line: #DCE1EA;
+    --pine: #2F6F4F;
+    --pine-dark: #1F4E37;
+    --gold: #C9A24B;
+    --danger: #B33F3F;
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 22px;
+    --shadow-sm: 0 1px 2px rgba(27,36,48,0.06), 0 1px 1px rgba(27,36,48,0.04);
+    --shadow-md: 0 8px 24px rgba(27,36,48,0.10);
+    --shadow-lg: 0 20px 45px rgba(27,36,48,0.16);
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  *,*::before,*::after{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+  }
+
+  img{ max-width:100%; display:block; }
+
+  a{ color: var(--pine-dark); }
+
+  .wrap{ max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  code, .mono{ font-family: var(--font-mono); }
+
+  /* ============ TOP NAV ============ */
+  header.topnav{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(238,241,246,0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topnav-inner{
+    max-width:1080px; margin:0 auto; padding: 14px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    flex-wrap: wrap;
+  }
+  .brand{
+    font-family: var(--font-display); font-weight:700; font-size: 1.15rem;
+    letter-spacing: 0.2px;
+  }
+  .brand small{
+    display:block; font-family: var(--font-mono); font-size:0.62rem;
+    color: var(--ink-soft); font-weight:400; letter-spacing: 1.5px; text-transform: uppercase;
+  }
+  nav.toc{ display:flex; gap: 4px; flex-wrap: wrap; }
+  nav.toc a{
+    text-decoration:none; color: var(--ink-soft); font-size:0.82rem;
+    padding: 6px 10px; border-radius: 999px; transition: all .2s ease;
+  }
+  nav.toc a:hover{ background: var(--surface); color: var(--ink); box-shadow: var(--shadow-sm); }
+
+  /* ============ HERO ============ */
+  .hero{ padding: 64px 0 40px; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--pine-dark);
+    background: rgba(47,111,79,0.08); padding: 6px 12px; border-radius: 999px;
+    margin-bottom: 18px;
+  }
+  .eyebrow::before{ content:''; width:6px; height:6px; border-radius:50%; background: var(--pine); }
+  h1.hero-title{
+    font-family: var(--font-display); font-weight:600; font-size: clamp(2.1rem, 5vw, 3.4rem);
+    margin: 0 0 16px; line-height:1.08; max-width: 16ch;
+  }
+  .hero p.lead{ max-width: 56ch; color: var(--ink-soft); font-size: 1.05rem; margin: 0 0 28px; }
+  .hero-tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{
+    font-size:0.75rem; padding: 5px 11px; border-radius:6px;
+    background: var(--surface); border:1px solid var(--line); color: var(--ink-soft);
+    font-family: var(--font-mono);
+  }
+
+  /* ============ SECTION SHELL ============ */
+  section.block{ padding: 56px 0; border-top: 1px solid var(--line); }
+  .block-head{ margin-bottom: 28px; }
+  .block-head .num{
+    font-family: var(--font-mono); color: var(--gold); font-size: 0.8rem; letter-spacing: 2px;
+  }
+  .block-head h2{
+    font-family: var(--font-display); font-size: 1.8rem; margin: 6px 0 8px; font-weight:600;
+  }
+  .block-head p{ color: var(--ink-soft); margin:0; max-width: 60ch; }
+
+  .grid-cols{ display:grid; gap: 22px; }
+  .grid-3{ grid-template-columns: repeat(3, 1fr); }
+  .grid-2{ grid-template-columns: repeat(2, 1fr); }
+  .grid-4{ grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 860px){
+    .grid-3, .grid-4{ grid-template-columns: repeat(2,1fr); }
+  }
+  @media (max-width: 560px){
+    .grid-3, .grid-4, .grid-2{ grid-template-columns: 1fr; }
+    nav.toc{ display:none; }
+  }
+
+  /* ============ 1. CARDS ============ */
+  .card{
+    background: var(--surface); border-radius: var(--radius-md);
+    border: 1px solid var(--line); overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .card:hover{ transform: translateY(-6px); box-shadow: var(--shadow-md); }
+  .card .thumb{
+    height: 120px;
+    background: linear-gradient(135deg, var(--pine) 0%, #6FAE8C 100%);
+  }
+  .card .thumb.alt{ background: linear-gradient(135deg, var(--gold) 0%, #E8CB8C 100%); }
+  .card .thumb.alt2{ background: linear-gradient(135deg, #4C6EA8 0%, #7FA0D6 100%); }
+  .card-body{ padding: 18px 20px 20px; }
+  .card-body h3{ margin: 0 0 6px; font-family: var(--font-display); font-size:1.1rem; }
+  .card-body p{ margin: 0 0 14px; color: var(--ink-soft); font-size: 0.9rem; }
+  .card-body .price{ font-weight:700; color: var(--pine-dark); }
+
+  /* Flip card — elemen signature */
+  .flip-stage{ perspective: 1200px; height: 230px; }
+  .flip-card{
+    position: relative; width:100%; height:100%;
+    transform-style: preserve-3d;
+    transition: transform .7s cubic-bezier(.2,.8,.2,1);
+    border-radius: var(--radius-md);
+  }
+  .flip-stage:hover .flip-card{ transform: rotateY(180deg); }
+  .flip-face{
+    position:absolute; inset:0; backface-visibility: hidden;
+    border-radius: var(--radius-md); padding: 22px;
+    display:flex; flex-direction:column; justify-content:center;
+    box-shadow: var(--shadow-sm);
+  }
+  .flip-front{ background: var(--surface); border:1px solid var(--line); }
+  .flip-back{
+    background: var(--pine-dark); color:#fff; transform: rotateY(180deg);
+  }
+  .flip-front h3{ font-family: var(--font-display); margin:0 0 8px; }
+  .flip-front p, .flip-back p{ margin:0; font-size:0.88rem; }
+  .flip-back small{ display:block; margin-top:10px; opacity:.75; font-family: var(--font-mono); }
+
+  /* ============ 2. BUTTONS ============ */
+  .btn-row{ display:flex; flex-wrap:wrap; gap: 12px; align-items:center; }
+  .btn{
+    font-family: var(--font-body); font-weight:600; font-size: 0.88rem;
+    padding: 11px 20px; border-radius: 10px; border: 1px solid transparent;
+    cursor:pointer; transition: all .2s ease; display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-solid{ background: var(--pine-dark); color:#fff; }
+  .btn-solid:hover{ background: var(--pine); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+  .btn-outline{ background: transparent; border-color: var(--pine-dark); color: var(--pine-dark); }
+  .btn-outline:hover{ background: var(--pine-dark); color:#fff; }
+  .btn-ghost{ background: transparent; color: var(--ink-soft); }
+  .btn-ghost:hover{ background: var(--surface-alt); color: var(--ink); }
+  .btn-gradient{ background: linear-gradient(120deg, var(--pine) 0%, var(--gold) 100%); color:#fff; }
+  .btn-gradient:hover{ filter: brightness(1.08); transform: translateY(-2px); }
+  .btn-danger{ background: var(--danger); color:#fff; }
+  .btn-danger:hover{ background:#8f3232; }
+  .btn:disabled{ opacity:0.45; cursor:not-allowed; transform:none !important; }
+  .btn:focus-visible{ outline: 3px solid var(--gold); outline-offset: 2px; }
+
+  /* ============ 3. LAYOUT: FLEXBOX & GRID ============ */
+  .flex-demo{
+    display:flex; gap:12px; background: var(--surface); border:1px solid var(--line);
+    border-radius: var(--radius-md); padding: 16px; flex-wrap:wrap;
+  }
+  .flex-demo .chip{
+    flex:1 1 100px; background: var(--surface-alt); border-radius: var(--radius-sm);
+    padding: 14px; text-align:center; font-family: var(--font-mono); font-size:0.78rem;
+    color: var(--ink-soft); border:1px dashed var(--line);
+  }
+  .gallery-grid{
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 10px;
+  }
+  .gallery-grid div{
+    aspect-ratio: 1; border-radius: var(--radius-sm);
+    background: var(--surface-alt); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--font-mono); font-size:0.72rem; color: var(--ink-soft);
+  }
+  .gallery-grid div:nth-child(3n+1){ background: rgba(47,111,79,0.10); }
+  .gallery-grid div:nth-child(3n+2){ background: rgba(201,162,75,0.14); }
+
+  /* ============ 4. FORM ============ */
+  .form-card{
+    background: var(--surface); border:1px solid var(--line); border-radius: var(--radius-md);
+    padding: 26px; box-shadow: var(--shadow-sm);
+  }
+  .field{ margin-bottom: 18px; }
+  .field label{
+    display:block; font-size:0.8rem; font-weight:600; margin-bottom:6px; color: var(--ink);
+  }
+  .field input[type=text], .field input[type=email], .field select, .field textarea{
+    width:100%; padding: 10px 12px; border-radius: 9px; border:1px solid var(--line);
+    background: var(--surface-alt); font-family: var(--font-body); font-size:0.9rem;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:none; border-color: var(--pine); box-shadow: 0 0 0 3px rgba(47,111,79,0.15);
+  }
+  .row-2{ display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+  @media (max-width:560px){ .row-2{ grid-template-columns:1fr; } }
+
+  .switch{ position:relative; display:inline-block; width:44px; height:24px; }
+  .switch input{ opacity:0; width:0; height:0; }
+  .slider-toggle{
+    position:absolute; inset:0; background: var(--line); border-radius: 999px; cursor:pointer;
+    transition: background .25s ease;
+  }
+  .slider-toggle::before{
+    content:''; position:absolute; width:18px; height:18px; left:3px; top:3px;
+    background:#fff; border-radius:50%; transition: transform .25s ease; box-shadow: var(--shadow-sm);
+  }
+  .switch input:checked + .slider-toggle{ background: var(--pine); }
+  .switch input:checked + .slider-toggle::before{ transform: translateX(20px); }
+  .toggle-row{ display:flex; align-items:center; gap:12px; }
+
+  .check-row{ display:flex; gap:18px; flex-wrap:wrap; margin-top:6px; }
+  .check-row label{ display:flex; gap:6px; align-items:center; font-size:0.85rem; color: var(--ink-soft); }
+
+  /* ============ 5. TYPOGRAPHY ============ */
+  .type-scale > *{ margin: 0 0 10px; }
+  .type-scale .t1{ font-family: var(--font-display); font-size: 2.4rem; font-weight:600; }
+  .type-scale .t2{ font-family: var(--font-display); font-size: 1.7rem; font-weight:600; }
+  .type-scale .t3{ font-size: 1.15rem; font-weight:600; }
+  .type-scale .t4{ font-size: 0.95rem; color: var(--ink-soft); }
+  blockquote{
+    margin: 18px 0; padding: 4px 0 4px 18px; border-left: 3px solid var(--gold);
+    font-family: var(--font-display); font-style: italic; font-size:1.1rem; color: var(--ink);
+  }
+  .codeblock{
+    background: #1B2430; color:#E7ECF3; border-radius: var(--radius-sm);
+    padding: 14px 16px; font-family: var(--font-mono); font-size: 0.82rem;
+    overflow-x:auto;
+  }
+  .codeblock .cm{ color:#8DA3B3; }
+  .codeblock .kw{ color:#7FCBA4; }
+
+  /* ============ 6. EFFECTS: shadow / gradient / animation ============ */
+  .fx-row{ display:flex; gap:18px; flex-wrap:wrap; }
+  .fx-box{
+    width: 130px; height: 90px; border-radius: var(--radius-sm);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--font-mono); font-size:0.72rem; color: var(--ink-soft);
+    background: var(--surface);
+  }
+  .fx-sm{ box-shadow: var(--shadow-sm); }
+  .fx-md{ box-shadow: var(--shadow-md); }
+  .fx-lg{ box-shadow: var(--shadow-lg); }
+  .fx-gradient{ background: linear-gradient(135deg, var(--pine), var(--gold)); color:#fff; }
+
+  .spinner{
+    width: 34px; height:34px; border-radius:50%;
+    border: 4px solid var(--line); border-top-color: var(--pine);
+    animation: spin 0.9s linear infinite;
+  }
+  @keyframes spin{ to{ transform: rotate(360deg); } }
+
+  .pulse-dot{
+    width:14px; height:14px; border-radius:50%; background: var(--pine);
+    box-shadow: 0 0 0 0 rgba(47,111,79,0.5);
+    animation: pulse 1.8s ease-out infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow: 0 0 0 0 rgba(47,111,79,0.45); }
+    70%{ box-shadow: 0 0 0 14px rgba(47,111,79,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(47,111,79,0); }
+  }
+
+  .anim-cluster{ display:flex; gap: 26px; align-items:center; flex-wrap:wrap; }
+  .anim-label{ font-family: var(--font-mono); font-size:0.72rem; color: var(--ink-soft); text-align:center; }
+
+  /* ============ 7. UTILITY: badge / progress / alert / tooltip ============ */
+  .badge{
+    display:inline-block; font-size:0.72rem; font-weight:600; padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .badge-pine{ background: rgba(47,111,79,0.12); color: var(--pine-dark); }
+  .badge-gold{ background: rgba(201,162,75,0.18); color: #7A5F1F; }
+  .badge-danger{ background: rgba(179,63,63,0.12); color: var(--danger); }
+
+  .progress{
+    width:100%; height:10px; border-radius:999px; background: var(--surface-alt);
+    overflow:hidden; border:1px solid var(--line);
+  }
+  .progress > span{
+    display:block; height:100%; border-radius:999px;
+    background: linear-gradient(90deg, var(--pine), var(--gold));
+    transition: width .4s ease;
+  }
+
+  .alert{
+    padding: 12px 16px; border-radius: var(--radius-sm); font-size:0.86rem;
+    border: 1px solid; display:flex; gap:10px; align-items:flex-start;
+  }
+  .alert-ok{ background: rgba(47,111,79,0.08); border-color: rgba(47,111,79,0.25); color: var(--pine-dark); }
+  .alert-warn{ background: rgba(201,162,75,0.12); border-color: rgba(201,162,75,0.35); color:#7A5F1F; }
+  .alert-err{ background: rgba(179,63,63,0.08); border-color: rgba(179,63,63,0.25); color: var(--danger); }
+
+  .tooltip-wrap{ position:relative; display:inline-block; }
+  .tooltip-wrap .tip{
+    position:absolute; bottom: calc(100% + 8px); left:50%; transform: translateX(-50%) translateY(4px);
+    background: #1B2430; color:#fff; font-size:0.72rem; padding:6px 10px; border-radius:6px;
+    white-space:nowrap; opacity:0; pointer-events:none; transition: all .2s ease;
+  }
+  .tooltip-wrap:hover .tip{ opacity:1; transform: translateX(-50%) translateY(0); }
+
+  /* ============ FOOTER ============ */
+  footer{
+    padding: 40px 0 60px; text-align:center; color: var(--ink-soft); font-size:0.82rem;
+  }
+  footer .mono{ display:block; margin-top:6px; color:#9AA3AF; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topnav">
+  <div class="topnav-inner">
+    <div class="brand">Galeri CSS<small>referensi komponen praktis</small></div>
+    <nav class="toc">
+      <a href="#cards">Card</a>
+      <a href="#buttons">Button</a>
+      <a href="#layout">Layout</a>
+      <a href="#form">Form</a>
+      <a href="#typography">Tipografi</a>
+      <a href="#effects">Efek</a>
+      <a href="#utility">Utilitas</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="eyebrow">satu file · html + css murni</div>
+    <h1 class="hero-title">Beragam fungsi CSS dalam satu halaman</h1>
+    <p class="lead">Halaman ini merangkum komponen dan teknik CSS yang sering dipakai sehari-hari — card, tombol, layout flex/grid, form, tipografi, animasi, hingga elemen utilitas. Arahkan kursor ke tiap elemen untuk melihat interaksinya.</p>
+    <div class="hero-tags">
+      <span class="tag">box-model</span>
+      <span class="tag">flexbox</span>
+      <span class="tag">grid</span>
+      <span class="tag">transition</span>
+      <span class="tag">keyframes</span>
+      <span class="tag">transform 3d</span>
+      <span class="tag">pseudo-class</span>
+      <span class="tag">gradient</span>
+    </div>
+  </section>
+
+  <!-- ================= CARDS ================= -->
+  <section class="block" id="cards">
+    <div class="block-head">
+      <div class="num">01</div>
+      <h2>Card</h2>
+      <p>Kombinasi border-radius, box-shadow, dan transition menghasilkan efek "terangkat" saat hover. Kartu ketiga mendemonstrasikan transform 3D (flip card).</p>
+    </div>
+    <div class="grid-cols grid-3">
+      <div class="card">
+        <div class="thumb"></div>
+        <div class="card-body">
+          <h3>Paket Reguler</h3>
+          <p>Cocok untuk kebutuhan dasar dengan performa stabil.</p>
+          <span class="price">Rp 49.000</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb alt"></div>
+        <div class="card-body">
+          <h3>Paket Premium</h3>
+          <p>Fitur lebih lengkap dengan prioritas dukungan.</p>
+          <span class="price">Rp 99.000</span>
+        </div>
+      </div>
+      <div class="flip-stage">
+        <div class="flip-card">
+          <div class="flip-face flip-front">
+            <h3>Arahkan kursor</h3>
+            <p>Kartu ini akan berputar 180° menampilkan sisi belakangnya.</p>
+          </div>
+          <div class="flip-face flip-back">
+            <p>Dibuat dengan <code class="mono">transform-style: preserve-3d</code> dan <code class="mono">rotateY()</code>.</p>
+            <small>perspective · backface-visibility</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BUTTONS ================= -->
+  <section class="block" id="buttons">
+    <div class="block-head">
+      <div class="num">02</div>
+      <h2>Tombol</h2>
+      <p>Variasi gaya tombol memakai warna solid, outline, gradient, hingga status disabled dan fokus keyboard.</p>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-solid">Simpan</button>
+      <button class="btn btn-outline">Batal</button>
+      <button class="btn btn-ghost">Lewati</button>
+      <button class="btn btn-gradient">Berlangganan</button>
+      <button class="btn btn-danger">Hapus</button>
+      <button class="btn btn-solid" disabled>Diproses…</button>
+    </div>
+  </section>
+
+  <!-- ================= LAYOUT ================= -->
+  <section class="block" id="layout">
+    <div class="block-head">
+      <div class="num">03</div>
+      <h2>Layout: Flexbox &amp; Grid</h2>
+      <p>Flexbox untuk susunan satu dimensi yang fleksibel, dan Grid untuk galeri responsif otomatis menggunakan <code class="mono">auto-fit</code>.</p>
+    </div>
+    <div class="grid-cols grid-2">
+      <div>
+        <div class="flex-demo">
+          <div class="chip">flex: 1</div>
+          <div class="chip">flex: 1</div>
+          <div class="chip">flex: 1</div>
+        </div>
+      </div>
+      <div>
+        <div class="gallery-grid">
+          <div>1</div><div>2</div><div>3</div>
+          <div>4</div><div>5</div><div>6</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FORM ================= -->
+  <section class="block" id="form">
+    <div class="block-head">
+      <div class="num">04</div>
+      <h2>Form</h2>
+      <p>Styling input, select, textarea, checkbox/radio, hingga toggle switch kustom berbasis <code class="mono">checkbox</code> tersembunyi.</p>
+    </div>
+    <div class="form-card">
+      <div class="row-2">
+        <div class="field">
+          <label for="nama">Nama Lengkap</label>
+          <input type="text" id="nama" placeholder="Tulis nama Anda">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="nama@email.com">
+        </div>
+      </div>
+      <div class="field">
+        <label for="topik">Topik</label>
+        <select id="topik">
+          <option>Pertanyaan umum</option>
+          <option>Kerja sama</option>
+          <option>Laporan bug</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="pesan">Pesan</label>
+        <textarea id="pesan" rows="3" placeholder="Tulis pesan singkat..."></textarea>
+      </div>
+      <div class="field toggle-row">
+        <label class="switch">
+          <input type="checkbox" checked>
+          <span class="slider-toggle"></span>
+        </label>
+        <span class="t4" style="font-size:0.85rem;color:var(--ink-soft)">Kirim salinan ke email saya</span>
+      </div>
+      <div class="check-row">
+        <label><input type="radio" name="prioritas" checked> Prioritas biasa</label>
+        <label><input type="radio" name="prioritas"> Prioritas tinggi</label>
+        <label><input type="checkbox"> Saya setuju dengan ketentuan</label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TYPOGRAPHY ================= -->
+  <section class="block" id="typography">
+    <div class="block-head">
+      <div class="num">05</div>
+      <h2>Tipografi</h2>
+      <p>Skala judul, kutipan bergaya serif miring, dan blok kode dengan font monospace.</p>
+    </div>
+    <div class="grid-cols grid-2">
+      <div class="type-scale">
+        <div class="t1">Judul Utama</div>
+        <div class="t2">Sub Judul</div>
+        <div class="t3">Judul Bagian</div>
+        <div class="t4">Teks paragraf sekunder untuk keterangan tambahan.</div>
+        <blockquote>“Desain yang baik adalah desain yang paling sedikit terlihat sebagai desain.”</blockquote>
+      </div>
+      <div class="codeblock">
+<span class="cm">/* contoh box-model */</span><br>
+<span class="kw">.kotak</span> {<br>
+&nbsp;&nbsp;padding: 16px;<br>
+&nbsp;&nbsp;border: 1px solid #ccc;<br>
+&nbsp;&nbsp;margin: 12px;<br>
+&nbsp;&nbsp;border-radius: 8px;<br>
+}
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EFFECTS ================= -->
+  <section class="block" id="effects">
+    <div class="block-head">
+      <div class="num">06</div>
+      <h2>Efek: Shadow, Gradient &amp; Animasi</h2>
+      <p>Tingkat kedalaman bayangan, gradasi warna, serta animasi <code class="mono">@keyframes</code> untuk spinner dan indikator pulse.</p>
+    </div>
+    <div class="fx-row" style="margin-bottom:26px;">
+      <div class="fx-box fx-sm">shadow-sm</div>
+      <div class="fx-box fx-md">shadow-md</div>
+      <div class="fx-box fx-lg">shadow-lg</div>
+      <div class="fx-box fx-gradient">gradient</div>
+    </div>
+    <div class="anim-cluster">
+      <div>
+        <div class="spinner"></div>
+        <div class="anim-label">spin</div>
+      </div>
+      <div>
+        <div class="pulse-dot"></div>
+        <div class="anim-label">pulse</div>
+      </div>
+      <div class="tooltip-wrap">
+        <button class="btn btn-outline">Arahkan kursor</button>
+        <span class="tip">Ini tooltip CSS murni</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= UTILITY ================= -->
+  <section class="block" id="utility">
+    <div class="block-head">
+      <div class="num">07</div>
+      <h2>Elemen Utilitas</h2>
+      <p>Badge status, progress bar, dan kotak peringatan (alert) yang umum dipakai pada antarmuka.</p>
+    </div>
+    <div class="grid-cols grid-2">
+      <div>
+        <p><span class="badge badge-pine">Aktif</span> &nbsp; <span class="badge badge-gold">Menunggu</span> &nbsp; <span class="badge badge-danger">Gagal</span></p>
+        <div style="margin:18px 0;">
+          <div class="progress"><span style="width:68%"></span></div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div class="alert alert-ok">✔ Perubahan berhasil disimpan.</div>
+        <div class="alert alert-warn">⚠ Sesi Anda akan berakhir dalam 5 menit.</div>
+        <div class="alert alert-err">✕ Gagal memuat data, coba lagi.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Dibuat sebagai referensi belajar CSS — buka kode sumber halaman ini untuk mempelajari tiap properti.
+  <span class="mono">html · css — tanpa framework, tanpa javascript library</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praktik CSS — Daftar Isi</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF1F6; --surface:#FFFFFF; --ink:#1B2430; --ink-soft:#5B6472;
+    --line:#DCE1EA; --pine:#2F6F4F; --pine-dark:#1F4E37; --gold:#C9A24B;
+    --radius:14px; --shadow:0 8px 24px rgba(27,36,48,0.10);
+    --font-display:'Fraunces',serif; --font-body:'Inter',sans-serif; --font-mono:'JetBrains Mono',monospace;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; font-family:var(--font-body); background:var(--bg); color:var(--ink);
+    padding: 60px 24px; line-height:1.55;
+  }
+  .wrap{ max-width: 760px; margin:0 auto; }
+  .eyebrow{
+    font-family: var(--font-mono); font-size:0.72rem; letter-spacing:1.5px; text-transform:uppercase;
+    color: var(--pine-dark); background: rgba(47,111,79,0.08); display:inline-block;
+    padding:6px 12px; border-radius:999px; margin-bottom:16px;
+  }
+  h1{ font-family:var(--font-display); font-size:2.2rem; margin:0 0 10px; font-weight:700; }
+  p.lead{ color:var(--ink-soft); max-width:56ch; margin:0 0 36px; }
+  .list{ display:flex; flex-direction:column; gap:12px; }
+  .item{
+    display:flex; align-items:center; gap:16px; background:var(--surface);
+    border:1px solid var(--line); border-radius:var(--radius); padding:16px 20px;
+    text-decoration:none; color:var(--ink); transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .item:hover{ transform: translateX(4px); box-shadow: var(--shadow); }
+  .item .no{ font-family:var(--font-mono); color:var(--gold); font-weight:600; width:26px; }
+  .item .txt strong{ display:block; font-family:var(--font-display); font-size:1.05rem; font-weight:600; }
+  .item .txt span{ font-size:0.85rem; color:var(--ink-soft); }
+  footer{ margin-top:40px; font-size:0.8rem; color:var(--ink-soft); font-family:var(--font-mono); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">latihan modular</div>
+  <h1>Praktik Fungsi CSS</h1>
+  <p class="lead">Setiap file di folder ini fokus pada satu fungsi CSS saja, terpisah dari galeri utama, sehingga lebih mudah dipelajari, diedit, dan dipraktikkan satu per satu. Klik salah satu untuk membuka.</p>
+
+  <div class="list">
+    <a class="item" href="01-navigasi.html"><span class="no">01</span><span class="txt"><strong>Navigasi</strong><span>Navbar responsif dengan menu hamburger tanpa JavaScript</span></span></a>
+    <a class="item" href="02-card.html"><span class="no">02</span><span class="txt"><strong>Card</strong><span>Kartu produk, profil, dan flip card 3D</span></span></a>
+    <a class="item" href="03-tombol.html"><span class="no">03</span><span class="txt"><strong>Tombol</strong><span>Variasi gaya dan status tombol</span></span></a>
+    <a class="item" href="04-layout.html"><span class="no">04</span><span class="txt"><strong>Layout</strong><span>Flexbox dan CSS Grid</span></span></a>
+    <a class="item" href="05-form.html"><span class="no">05</span><span class="txt"><strong>Form</strong><span>Input, select, checkbox, toggle switch</span></span></a>
+    <a class="item" href="06-tipografi.html"><span class="no">06</span><span class="txt"><strong>Tipografi</strong><span>Skala judul, kutipan, blok kode</span></span></a>
+    <a class="item" href="07-animasi.html"><span class="no">07</span><span class="txt"><strong>Animasi &amp; Efek</strong><span>Shadow, gradient, keyframes, transition</span></span></a>
+    <a class="item" href="08-utilitas.html"><span class="no">08</span><span class="txt"><strong>Utilitas</strong><span>Badge, progress bar, alert, tooltip</span></span></a>
+  </div>
+
+  <footer>8 file · html + css murni · tanpa framework</footer>
+</div>
+</body>
+</html>

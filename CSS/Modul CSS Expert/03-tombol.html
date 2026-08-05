@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praktik: Tombol</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF1F6; --ink:#1B2430; --ink-soft:#5B6472; --line:#DCE1EA;
+    --pine:#2F6F4F; --pine-dark:#1F4E37; --gold:#C9A24B; --danger:#B33F3F; --surface-alt:#F4F6FA;
+    --shadow-sm:0 1px 2px rgba(27,36,48,0.06);
+    --font-display:'Fraunces',serif; --font-body:'Inter',sans-serif; --font-mono:'JetBrains Mono',monospace;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:var(--font-body); background:var(--bg); color:var(--ink); }
+  .page{ max-width:820px; margin:0 auto; padding: 40px 24px; }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:0.72rem; letter-spacing:1.5px; text-transform:uppercase;
+    color:var(--pine-dark); background:rgba(47,111,79,0.08); display:inline-block;
+    padding:6px 12px; border-radius:999px; margin-bottom:12px;
+  }
+  h1{ font-family:var(--font-display); margin:0 0 6px; }
+  p.note{ color:var(--ink-soft); margin:0 0 30px; max-width:60ch; }
+  a.back{ font-family:var(--font-mono); font-size:0.8rem; color:var(--pine-dark); }
+  h2.sub{ font-family:var(--font-display); font-size:1.1rem; margin: 30px 0 12px; }
+
+  .btn-row{ display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+
+  /* ===================================================
+     TOMBOL — teknik: base class .btn untuk properti sama,
+     lalu modifier class (.btn-solid, .btn-outline, dst)
+     untuk membedakan warna & gaya
+  =================================================== */
+  .btn{
+    font-family: var(--font-body); font-weight:600; font-size:0.88rem;
+    padding: 11px 20px; border-radius:10px; border:1px solid transparent;
+    cursor:pointer; transition: all .2s ease;
+  }
+  .btn-solid{ background: var(--pine-dark); color:#fff; }
+  .btn-solid:hover{ background: var(--pine); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+
+  .btn-outline{ background: transparent; border-color: var(--pine-dark); color: var(--pine-dark); }
+  .btn-outline:hover{ background: var(--pine-dark); color:#fff; }
+
+  .btn-ghost{ background: transparent; color: var(--ink-soft); }
+  .btn-ghost:hover{ background: var(--surface-alt); color: var(--ink); }
+
+  .btn-gradient{ background: linear-gradient(120deg, var(--pine), var(--gold)); color:#fff; }
+  .btn-gradient:hover{ filter: brightness(1.08); transform: translateY(-2px); }
+
+  .btn-danger{ background: var(--danger); color:#fff; }
+  .btn-danger:hover{ background:#8f3232; }
+
+  .btn-pill{ border-radius: 999px; }
+
+  .btn-icon{ display:inline-flex; align-items:center; gap:8px; }
+
+  /* status disabled */
+  .btn:disabled{ opacity:0.45; cursor:not-allowed; transform:none !important; }
+
+  /* aksesibilitas: outline saat navigasi keyboard (Tab) */
+  .btn:focus-visible{ outline: 3px solid var(--gold); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="eyebrow">03 · tombol</div>
+  <h1>Variasi Tombol</h1>
+  <p class="note">Semua tombol berbagi class dasar <code>.btn</code>, lalu ditambah class modifier untuk warna/gaya berbeda. Coba tekan tombol <kbd>Tab</kbd> di keyboard untuk melihat efek fokus.</p>
+
+  <h2 class="sub">Gaya dasar</h2>
+  <div class="btn-row">
+    <button class="btn btn-solid">Solid</button>
+    <button class="btn btn-outline">Outline</button>
+    <button class="btn btn-ghost">Ghost</button>
+    <button class="btn btn-gradient">Gradient</button>
+    <button class="btn btn-danger">Danger</button>
+  </div>
+
+  <h2 class="sub">Bentuk &amp; status</h2>
+  <div class="btn-row">
+    <button class="btn btn-solid btn-pill">Pill</button>
+    <button class="btn btn-outline btn-icon">★ Dengan ikon</button>
+    <button class="btn btn-solid" disabled>Nonaktif</button>
+  </div>
+
+  <p style="margin-top:30px;"><a class="back" href="index.html">&larr; kembali ke daftar isi</a></p>
+</div>
+</body>
+</html>

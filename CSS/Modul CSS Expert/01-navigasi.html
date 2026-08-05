@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praktik: Navigasi</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF1F6; --surface:#FFFFFF; --ink:#1B2430; --ink-soft:#5B6472;
+    --line:#DCE1EA; --pine:#2F6F4F; --pine-dark:#1F4E37; --gold:#C9A24B;
+    --font-display:'Fraunces',serif; --font-body:'Inter',sans-serif; --font-mono:'JetBrains Mono',monospace;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:var(--font-body); background:var(--bg); color:var(--ink); }
+  .page{ max-width:900px; margin:0 auto; padding: 40px 24px; }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:0.72rem; letter-spacing:1.5px; text-transform:uppercase;
+    color:var(--pine-dark); background:rgba(47,111,79,0.08); display:inline-block;
+    padding:6px 12px; border-radius:999px; margin-bottom:12px;
+  }
+  h1{ font-family:var(--font-display); margin:0 0 6px; }
+  p.note{ color:var(--ink-soft); margin:0 0 30px; }
+  a.back{ font-family:var(--font-mono); font-size:0.8rem; color:var(--pine-dark); }
+
+  /* ===================================================
+     NAVBAR — teknik utama:
+     1) flexbox untuk menata logo & menu sejajar
+     2) "checkbox hack" untuk toggle menu mobile tanpa JS
+     3) media query untuk menyembunyikan menu di layar kecil
+  =================================================== */
+  .navbar{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+  .navbar .logo{
+    font-family: var(--font-display); font-weight:700; font-size:1.1rem; color: var(--ink);
+    text-decoration:none;
+  }
+  .navbar ul.menu{
+    list-style:none; display:flex; gap: 6px; margin:0; padding:0;
+  }
+  .navbar ul.menu a{
+    text-decoration:none; color: var(--ink-soft); font-size:0.88rem; font-weight:500;
+    padding: 8px 14px; border-radius: 999px; transition: all .2s ease;
+  }
+  .navbar ul.menu a:hover{ background: rgba(47,111,79,0.08); color: var(--pine-dark); }
+  .navbar ul.menu a.active{ background: var(--pine-dark); color:#fff; }
+
+  /* tombol hamburger, disembunyikan di layar lebar */
+  .burger{
+    display:none; flex-direction:column; gap:5px; cursor:pointer;
+    width:26px;
+  }
+  .burger span{ height:2px; background: var(--ink); border-radius:2px; transition: all .25s ease; }
+
+  #menu-toggle{ display:none; } /* checkbox tersembunyi, "otak" dari toggle ini */
+
+  @media (max-width: 640px){
+    .navbar ul.menu{
+      display:none;
+      position:absolute; top: calc(100% + 8px); left:0; right:0;
+      flex-direction:column; background: var(--surface);
+      border:1px solid var(--line); border-radius:14px; padding: 10px;
+      box-shadow: 0 12px 30px rgba(27,36,48,0.12);
+    }
+    .burger{ display:flex; }
+    /* saat checkbox dicentang -> tampilkan menu */
+    #menu-toggle:checked ~ ul.menu{ display:flex; }
+    /* animasi ikon hamburger menjadi "X" */
+    #menu-toggle:checked ~ .burger span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+    #menu-toggle:checked ~ .burger span:nth-child(2){ opacity:0; }
+    #menu-toggle:checked ~ .burger span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="eyebrow">01 · navigasi</div>
+  <h1>Navbar Responsif</h1>
+  <p class="note">Persempit lebar browser (atau buka di HP) untuk melihat menu berubah menjadi ikon hamburger. Tidak memakai JavaScript — hanya <code>checkbox</code> tersembunyi + selector <code>:checked ~</code>.</p>
+
+  <nav class="navbar">
+    <a href="#" class="logo">Merek.</a>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="burger">
+      <span></span><span></span><span></span>
+    </label>
+    <ul class="menu">
+      <li><a href="#" class="active">Beranda</a></li>
+      <li><a href="#">Produk</a></li>
+      <li><a href="#">Tentang</a></li>
+      <li><a href="#">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <p style="margin-top:24px;"><a class="back" href="index.html">&larr; kembali ke daftar isi</a></p>
+</div>
+</body>
+</html>

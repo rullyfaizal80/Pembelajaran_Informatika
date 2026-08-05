@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>4. Flexbox</title>
+<style>
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #222222;
+    margin: 0;
+    padding: 30px;
+  }
+
+  h1 { font-size: 22px; }
+  h2 { font-size: 16px; margin-top: 30px; }
+  p { color: #555555; }
+
+  .kotak {
+    background-color: #2e7d52;
+    color: white;
+    padding: 16px;
+    border-radius: 6px;
+    text-align: center;
+  }
+
+  /* link kembali ke halaman daftar isi */
+  a.kembali {
+    display: inline-block;
+    margin-top: 24px;
+    color: #2e7d52;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  a.kembali:hover {
+    text-decoration: underline;
+  }
+
+  /* ======================================
+     FLEXBOX
+     Konsep yang dipakai:
+     - display: flex -> mengaktifkan mode flexbox
+     - gap -> jarak antar kotak
+     - justify-content -> posisi kotak secara horizontal
+     - align-items -> posisi kotak secara vertikal
+  ====================================== */
+
+  /* Contoh 1: kotak sejajar biasa */
+  .contoh-1 {
+    display: flex;
+    gap: 10px;
+  }
+
+  /* Contoh 2: kotak dengan jarak merata (space-between) */
+  .contoh-2 {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border: 1px dashed #cccccc;
+    padding: 10px;
+  }
+  .contoh-2 .kotak {
+    width: 80px;
+  }
+
+  /* Contoh 3: kotak di tengah (horizontal & vertikal) */
+  .contoh-3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    background-color: white;
+    border: 1px dashed #cccccc;
+  }
+
+</style>
+</head>
+<body>
+
+  <h1>4. Praktik Flexbox</h1>
+  <p>Flexbox dipakai untuk menyusun elemen secara sejajar (baris atau kolom) dengan mudah.</p>
+
+  <h2>Contoh 1: display: flex</h2>
+  <div class="contoh-1">
+    <div class="kotak">1</div>
+    <div class="kotak">2</div>
+    <div class="kotak">3</div>
+  </div>
+
+  <h2>Contoh 2: justify-content: space-between</h2>
+  <div class="contoh-2">
+    <div class="kotak">A</div>
+    <div class="kotak">B</div>
+    <div class="kotak">C</div>
+  </div>
+
+  <h2>Contoh 3: kotak di tengah-tengah</h2>
+  <div class="contoh-3">
+    <div class="kotak" style="width:80px;">Tengah</div>
+  </div>
+
+  <a class="kembali" href="index.html">&larr; Kembali ke daftar isi</a>
+
+</body>
+</html>
