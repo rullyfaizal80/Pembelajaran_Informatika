@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1-navigasi</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f5f5;
+            color: #222222;
+            margin: 0;
+            padding: 30px;
+        }
+        h1 {
+            font-size: 22px;
+        }
+        p {
+            color: #555555;
+        }
+        .navbar {
+            background-color: #2e7d52;
+            padding: 12px 20px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar .logo {
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 10px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+        }
+        .navbar ul li a:hover {
+            background-color: #256a44;
+        }
+        a.kembali {
+            display: inline-block;
+            margin-top: 25px;
+            color: #2e7d52;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        a.kembali:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>1. Praktik navigasi</h1>
+    <p>Contoh navbar sederhana memakai display: flex</p>
+
+    <nav class="navbar">
+        <div class="logo">Websiteku</div>
+        <ul>
+            <li><a href="#">Beranda</a></li>
+            <li><a href="#">Tentang</a></li>
+            <li><a href="#">Kontak</a></li>
+        </ul>
+    </nav>
+    <a class="kembali" href="index.html">&larr; Kembali ke Daftar Isi</a>
+</body>
+</html>
