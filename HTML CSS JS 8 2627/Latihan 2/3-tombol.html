@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>3. Tombol</title>
+<style>
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #222222;
+    margin: 0;
+    padding: 30px;
+  }
+
+  h1 { font-size: 22px; }
+  p { color: #555555; }
+
+  /* link kembali ke halaman daftar isi */
+  a.kembali {
+    display: inline-block;
+    margin-top: 24px;
+    color: #2e7d52;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  a.kembali:hover {
+    text-decoration: underline;
+  }
+
+  /* ======================================
+     TOMBOL (BUTTON)
+     Konsep yang dipakai:
+     - background-color & color -> warna dasar tombol
+     - padding -> jarak isi tombol
+     - border-radius -> sudut melengkung
+     - :hover -> ubah warna saat kursor di atas tombol
+  ====================================== */
+
+  button {
+    font-size: 14px;
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  .btn-primer {
+    background-color: #2e7d52;
+    color: white;
+  }
+  .btn-primer:hover {
+    background-color: #256a44;
+  }
+
+  .btn-sekunder {
+    background-color: white;
+    color: #2e7d52;
+    border: 2px solid #2e7d52;
+  }
+  .btn-sekunder:hover {
+    background-color: #2e7d52;
+    color: white;
+  }
+
+  .btn-bahaya {
+    background-color: #c0392b;
+    color: white;
+  }
+  .btn-bahaya:hover {
+    background-color: #a13023;
+  }
+
+  /* tombol nonaktif */
+  button:disabled {
+    background-color: #cccccc;
+    color: #888888;
+    cursor: not-allowed;
+  }
+
+</style>
+</head>
+<body>
+
+  <h1>3. Praktik Tombol</h1>
+  <p>Beberapa gaya tombol dengan warna dan status yang berbeda.</p>
+
+  <button class="btn-primer">Simpan</button>
+  <button class="btn-sekunder">Batal</button>
+  <button class="btn-bahaya">Hapus</button>
+  <button class="btn-primer" disabled>Nonaktif</button>
+
+  <br>
+  <a class="kembali" href="index.html">&larr; Kembali ke daftar isi</a>
+
+</body>
+</html>
