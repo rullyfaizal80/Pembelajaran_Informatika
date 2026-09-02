@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>6. Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #222222;
+    margin: 0;
+    padding: 30px;
+  }
+  h1 { font-size: 22px; }
+  p { color: #555555; }
+  a.kembali {
+    display: inline-block;
+    margin-top: 24px;
+    color: #2e7d52;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  a.kembali:hover {
+    text-decoration: underline;
+  }
+  .form-wadah {
+    background-color: white;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 320px;
+  }
+  .grup {
+    margin-bottom: 14px;
+  }
+  .grup label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .grup input,
+  .grup select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  .grup input:focus,
+  .grup select:focus {
+    outline: none;
+    border-color: #2e7d52;
+  }
+  .tombol-kirim {
+    background-color: #2e7d52;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+  <h1>6. Praktik Form</h1>
+  <p>Contoh input, select, dan tombol kirim sederhana.</p>
+  <div class="form-wadah">
+    <div class="grup">
+      <label for="nama">Nama</label>
+      <input type="text" id="nama" placeholder="Tulis nama Anda">
+    </div>
+    <div class="grup">
+      <label for="kota">Kota</label>
+      <select id="kota">
+        <option>Jakarta</option>
+        <option>Bandung</option>
+        <option>Surabaya</option>
+      </select>
+    </div>
+    <button class="tombol-kirim">Kirim</button>
+  </div>
+  <a class="kembali" href="index.html">&larr; Kembali ke daftar isi</a>
+</body>
+</html>
