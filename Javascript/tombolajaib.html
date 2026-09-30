@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            transition: background-color 0.5s ease; /* Membuat perubahan warna lebih halus */
+            margin: 0;
+            padding: 100px;
+            }
+
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            border: none;
+            background-color: #3498db;
+            color: white;
+            }
+
+        button:hover {
+            background-color: #2980b9;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="judul">Pelajaran Praktik 1</h1>
+        <button id="tombolAjaib">Klik Saya!</button>
+    </div>
+    <script>
+        // Mengambil elemen HTML berdasarkan ID
+        const tombol = document.getElementById('tombolAjaib');
+        const judul = document.getElementById('judul');
+
+        // Menambahkan aksi saat tombol diklik
+        tombol.addEventListener('click', function() {
+  
+        // 1. Kita siapkan kotak berisi 5 warna
+        const daftarWarna = ['red', 'blue', 'green', 'yellow', 'purple'];
+
+        // 2. Komputer mengacak angka dari 0 sampai 4
+        const acak = Math.floor(Math.random() * 5);
+
+        // 3. Komputer mengambil warna berdasarkan angka acak tadi
+        const warnaAcak = daftarWarna[acak];
+  
+        // Mengubah warna latar belakang body
+        document.body.style.backgroundColor = warnaAcak;
+
+        // Mengubah teks judul dan tombol
+        judul.innerText = 'Warna Berubah!';
+        tombol.innerText = 'Klik Lagi!';
+        });
+    </script>
+</body>
+</html>
